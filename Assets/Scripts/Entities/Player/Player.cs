@@ -4,8 +4,8 @@ using UnityEngine;
 public class Player : Entity
 {
     #region Components
+    [Header("Components")]
     [SerializeField] private PlayerScriptable _data;
-    [SerializeField] private InputManager _input;
     private Rigidbody _rb;
     #endregion
 
@@ -22,17 +22,25 @@ public class Player : Entity
         _invulnerability = _data.Invulnerability;
     }
 
-    private void FixedUpdate()
-    {
-        Vector3 moveDirection = _transform.right * _input.Move.x + _transform.forward * _input.Move.y;
-        Vector3 rbVelocity = moveDirection.normalized * _data.Speed;
-
-        rbVelocity.y = _rb.velocity.y; // mantenemos la velocidad en y que tenia el cuerpo
-        _rb.velocity = rbVelocity;
-    }
-
     protected override void Death()
     {
         throw new System.NotImplementedException();
     }
+
+    #region Getter/Setters
+    public PlayerScriptable Data
+    {
+        get { return _data; }
+    }
+
+    public Transform Transform
+    {
+        get { return _transform; }
+    }
+
+    public Rigidbody RB
+    {
+        get { return _rb; }
+    }
+    #endregion
 }

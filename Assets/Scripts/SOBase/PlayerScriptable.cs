@@ -7,4 +7,9 @@ public class PlayerScriptable : ScriptableObject
     public int Invulnerability;
     public int Speed;
     public int JumpHeight;
+
+    #region Look
+    public float MouseSensitivity;
+    public Vector2 LookLimits;
+    #endregion
 }

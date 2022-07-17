@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: PlayerTest
   m_EditorClassIdentifier: 
   MaxHealth: 100
+  Invulnerability: 0
   Speed: 10
   JumpHeight: 10
+  MouseSensitivity: 0.2
+  LookLimits: {x: -50, y: 50}

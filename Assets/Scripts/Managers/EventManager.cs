@@ -9,6 +9,6 @@ public class EventManager : MonoBehaviour
     public static event UnityAction<Vector2> Look;
     public static void OnLook(Vector2 look) => Look?.Invoke(look);
 
-    public static event UnityAction Jump;
-    public static void OnJump() => Jump?.Invoke();
+    public static event UnityAction<bool> Jump;
+    public static void OnJump(bool jump) => Jump?.Invoke(jump);
 }

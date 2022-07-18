@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
     #endregion
 
+    private Vector3 _dirInput;
+
     private void Start()
     {
         Player player = GetComponent<Player>();
@@ -17,13 +19,18 @@ public class PlayerMovement : MonoBehaviour
         _data = player.Data;
         _rb = player.RB;
 
-        EventManager.Move += Moving;
+        EventManager.Move += ChangeDirection;
     }
 
-    private void Moving(Vector2 move)
+    private void ChangeDirection(Vector2 move)
     {
-        Vector3 moveDirection = _transform.right * move.x + _transform.forward * move.y;
-        Vector3 rbVelocity = moveDirection.normalized * _data.Speed;
+        _dirInput = move;
+    }
+
+    public void ApplyMovement()
+    {
+        Vector3 dir = (_transform.right * _dirInput.x + _transform.forward * _dirInput.y).normalized;
+        Vector3 rbVelocity = dir * _data.Speed;
 
         rbVelocity.y = _rb.velocity.y; // mantenemos la velocidad en y que tenia el cuerpo
         _rb.velocity = rbVelocity;
@@ -31,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.Move -= Moving;
+        EventManager.Move -= ChangeDirection;
+    }
+
+    public bool IsMoving
+    {
+        get { return _dirInput.magnitude > 0.01f; }
     }
 }

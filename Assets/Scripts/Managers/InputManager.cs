@@ -17,16 +17,6 @@ public class InputManager : MonoBehaviour
     public bool Jump = false;
     #endregion
 
-    private void Update()
-    {
-        EventManager.OnLook(Look);
-    }
-
-    private void FixedUpdate()
-    {
-        EventManager.OnMove(Move);
-    }
-
     #region MovementMethods
     public void OnMove(InputValue value)
     {
@@ -35,6 +25,7 @@ public class InputManager : MonoBehaviour
         // data ajustar esto, de momento creo que
         // funciona asi como esta
         Move = value.Get<Vector2>();
+        EventManager.OnMove(Move);
     }
     #endregion
 
@@ -47,6 +38,7 @@ public class InputManager : MonoBehaviour
         // data ajustar esto, de momento creo que
         // funciona asi como esta
         Look = value.Get<Vector2>();
+        EventManager.OnLook(Look);
     }
     #endregion
 
@@ -56,9 +48,7 @@ public class InputManager : MonoBehaviour
         if (!CanMove) return;
 
         Jump = value.isPressed;
-
-        if (Jump)
-            EventManager.OnJump();
+        EventManager.OnJump(Jump);
     }
 
     #endregion

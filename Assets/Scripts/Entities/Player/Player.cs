@@ -9,9 +9,16 @@ public class Player : Entity
     private Rigidbody _rb;
     #endregion
 
+    #region Scripts
+    private PlayerMovement _playerMovement;
+    private PlayerJump _playerJump;
+    #endregion
+
     private void Awake()
     {
         _transform = GetComponent<Transform>();
+        _playerMovement = GetComponent<PlayerMovement>();
+        _playerJump = GetComponent<PlayerJump>();
 
         if (TryGetComponent(out Rigidbody rb))
             _rb = rb;
@@ -38,6 +45,16 @@ public class Player : Entity
         get { return _data; }
     }
 
+    public PlayerMovement PlayerMov
+    {
+        get { return _playerMovement; }
+    }
+
+    public PlayerJump PlayerJump
+    {
+        get { return _playerJump; }
+    }
+
     public Transform Transform
     {
         get { return _transform; }
@@ -46,6 +63,11 @@ public class Player : Entity
     public Rigidbody RB
     {
         get { return _rb; }
+    }
+
+    public bool IsFalling
+    {
+        get { return _rb.velocity.y < 0; }
     }
     #endregion
 }

@@ -13,16 +13,25 @@ public class InputManager : MonoBehaviour
     public Vector2 Look;
     #endregion
 
+    private void Update()
+    {
+        EventManager.OnLook(Look);
+    }
+
+    private void FixedUpdate()
+    {
+        EventManager.OnMove(Move);
+    }
+
     #region MovementMethods
     public void OnMove(InputValue value)
     {
         if (!CanMove) return;
-
+        Debug.Log(value.Get<Vector2>());
         // en el caso que necesitemos procesar esta
         // data ajustar esto, de momento creo que
         // funciona asi como esta
         Move = value.Get<Vector2>();
-        EventManager.OnMove(Move);
     }
     #endregion
 
@@ -35,7 +44,6 @@ public class InputManager : MonoBehaviour
         // data ajustar esto, de momento creo que
         // funciona asi como esta
         Look = value.Get<Vector2>();
-        EventManager.OnLook(Look);
     }
     #endregion
 }

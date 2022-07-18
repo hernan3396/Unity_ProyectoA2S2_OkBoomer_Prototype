@@ -6,9 +6,15 @@ public class PlayerScriptable : ScriptableObject
     public int MaxHealth;
     public int Invulnerability;
     public int Speed;
-    public int JumpHeight;
+
+    #region Jump
+    [Header("Jump")]
+    public int JumpStrength;
+    public int Gravity;
+    #endregion
 
     #region Look
+    [Header("Look")]
     public float MouseSensitivity;
     public Vector2 LookLimits;
     #endregion

@@ -22,6 +22,11 @@ public class Player : Entity
         _invulnerability = _data.Invulnerability;
     }
 
+    private void FixedUpdate()
+    {
+        _rb.AddForce(Physics.gravity * _data.Gravity, ForceMode.Acceleration);
+    }
+
     protected override void Death()
     {
         throw new System.NotImplementedException();

@@ -23,7 +23,9 @@ public class PlayerLook : MonoBehaviour
 
     private void LookAtMouse(Vector2 look)
     {
-        look *= _data.MouseSensitivity;
+        // lo divido entre 10 para que quede un numero mas lindo
+        // en el inspector (2 en vez de 0.2 por ejemplo)
+        look *= _data.MouseSensitivity / 10;
 
         // up & down
         _rotations.x -= look.y;

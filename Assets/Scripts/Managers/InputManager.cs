@@ -13,6 +13,10 @@ public class InputManager : MonoBehaviour
     public Vector2 Look;
     #endregion
 
+    #region Jumping
+    public bool Jump = false;
+    #endregion
+
     private void Update()
     {
         EventManager.OnLook(Look);
@@ -27,7 +31,6 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputValue value)
     {
         if (!CanMove) return;
-        Debug.Log(value.Get<Vector2>());
         // en el caso que necesitemos procesar esta
         // data ajustar esto, de momento creo que
         // funciona asi como esta
@@ -45,5 +48,18 @@ public class InputManager : MonoBehaviour
         // funciona asi como esta
         Look = value.Get<Vector2>();
     }
+    #endregion
+
+    #region JumpingMethods
+    public void OnJump(InputValue value)
+    {
+        if (!CanMove) return;
+
+        Jump = value.isPressed;
+
+        if (Jump)
+            EventManager.OnJump();
+    }
+
     #endregion
 }

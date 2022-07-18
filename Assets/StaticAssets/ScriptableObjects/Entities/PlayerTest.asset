@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Invulnerability: 0
-  Speed: 15
-  JumpStrength: 30
+  Speed: 25
+  JumpStrength: 40
   Gravity: 10
   MouseSensitivity: 2
-  LookLimits: {x: -50, y: 50}
+  LookLimits: {x: -90, y: 80}

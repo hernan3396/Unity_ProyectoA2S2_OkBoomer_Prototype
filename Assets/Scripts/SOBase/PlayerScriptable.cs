@@ -11,7 +11,6 @@ public class PlayerScriptable : ScriptableObject
     [Header("Jump")]
     public float HalfGravityLimit;
     public float CoyoteMaxTime;
-    public float JumpBufferTime;
     public int JumpStrength;
     public int Gravity;
     #endregion

@@ -9,6 +9,7 @@ public class PlayerScriptable : ScriptableObject
 
     #region Jump
     [Header("Jump")]
+    public float HalfGravityLimit;
     public int JumpStrength;
     public int Gravity;
     #endregion

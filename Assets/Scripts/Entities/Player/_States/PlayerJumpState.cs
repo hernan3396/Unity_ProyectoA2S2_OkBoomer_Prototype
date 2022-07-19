@@ -8,8 +8,6 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
-        Debug.Log("Salta");
-
         if (_player == null)
         {
             _player = stateManager.Player;

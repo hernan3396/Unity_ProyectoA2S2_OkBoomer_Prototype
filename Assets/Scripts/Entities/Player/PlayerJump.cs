@@ -4,26 +4,36 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     #region Components
+    private Player _player;
     private PlayerScriptable _data;
     private Transform _transform;
     private Rigidbody _rb;
     #endregion
     private bool _isJumping;
+    private float _coyoteTimer;
 
     private void Start()
     {
-        Player player = GetComponent<Player>();
+        _player = GetComponent<Player>();
 
-        _transform = player.Transform;
-        _data = player.Data;
-        _rb = player.RB;
+        _transform = _player.Transform;
+        _data = _player.Data;
+        _rb = _player.RB;
 
         EventManager.Jump += Jumping;
     }
 
+    private void Update()
+    {
+        if (!_player.IsGrounded)
+            _coyoteTimer += Time.deltaTime;
+        else
+            _coyoteTimer = 0;
+    }
+
     private void Jumping(bool value)
     {
-        _isJumping = value;
+        _isJumping = value && _coyoteTimer <= _data.CoyoteMaxTimer;
     }
 
     public void Jump()

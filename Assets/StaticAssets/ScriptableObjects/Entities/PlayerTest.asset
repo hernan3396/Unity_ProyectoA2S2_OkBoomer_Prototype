@@ -16,6 +16,7 @@ MonoBehaviour:
   Invulnerability: 0
   Speed: 30
   HalfGravityLimit: 0.4
+  CoyoteMaxTimer: 0.3
   JumpStrength: 50
   Gravity: 10
   MouseSensitivity: 2

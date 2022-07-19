@@ -19,5 +19,5 @@ MonoBehaviour:
   CoyoteMaxTime: 0.3
   JumpStrength: 45
   Gravity: 10
-  MouseSensitivity: 2
+  MouseSensitivity: 1
   LookLimits: {x: -90, y: 80}

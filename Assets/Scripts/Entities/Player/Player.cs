@@ -28,6 +28,10 @@ public class Player : Entity
     RaycastHit _hit;
     #endregion
 
+    #region Gravity
+    [SerializeField] private float _gravityMod = 1;
+    #endregion
+
     private void Awake()
     {
         _transform = GetComponent<Transform>();
@@ -45,11 +49,12 @@ public class Player : Entity
 
     private void FixedUpdate()
     {
-        _rb.AddForce(Physics.gravity * _data.Gravity, ForceMode.Acceleration);
+        _rb.AddForce(Physics.gravity * _data.Gravity * _gravityMod, ForceMode.Acceleration);
 
         _isGrounded = GroundChecking();
     }
 
+    #region GroundCheckingMethods
     private bool GroundChecking()
     {
         _hitDetect = Physics.BoxCast(_transform.position, _transform.localScale, Vector3.down, out _hit, _transform.rotation, _grdDist, _grdLayer);
@@ -59,17 +64,32 @@ public class Player : Entity
 
         return false;
     }
+    #endregion
+
+    #region GravityMethods
+    /// <Summary>
+    ///  if true halves gravity, false returns it
+    /// </Summary>
+    public void ChangeGravity(bool change)
+    {
+        // estos valores supongo se pueden hacer configurables
+        if (change)
+            _gravityMod = 0.5f;
+        else
+            _gravityMod = 1;
+    }
+    #endregion
+
+    protected override void Death()
+    {
+        throw new System.NotImplementedException();
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
 
         Gizmos.DrawWireCube(transform.position + Vector3.down * _grdDist, transform.localScale);
-    }
-
-    protected override void Death()
-    {
-        throw new System.NotImplementedException();
     }
 
     #region Getter/Setters

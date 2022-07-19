@@ -3,6 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Entity
 {
+    /*
+    De momento (que esta medio simple) dejar 
+    los scripts separados, si se vuelve una 
+    ensalada juntarlos todos aca
+    */
     #region Components
     [Header("Components")]
     [SerializeField] private PlayerScriptable _data;

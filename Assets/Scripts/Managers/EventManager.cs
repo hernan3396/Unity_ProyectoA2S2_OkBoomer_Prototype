@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventManager : MonoBehaviour
+public static class EventManager
 {
     public static event UnityAction<Vector2> Move;
     public static void OnMove(Vector2 move) => Move?.Invoke(move);

@@ -19,6 +19,15 @@ public class Player : Entity
     private PlayerJump _playerJump;
     #endregion
 
+    #region GroundChecking
+    [Header("Ground Checking")]
+    [SerializeField, Range(0, 1)] private float _grdDist;
+    [SerializeField] private LayerMask _grdLayer;
+    [SerializeField] private bool _isGrounded;
+    bool _hitDetect;
+    RaycastHit _hit;
+    #endregion
+
     private void Awake()
     {
         _transform = GetComponent<Transform>();
@@ -37,6 +46,25 @@ public class Player : Entity
     private void FixedUpdate()
     {
         _rb.AddForce(Physics.gravity * _data.Gravity, ForceMode.Acceleration);
+
+        _isGrounded = GroundChecking();
+    }
+
+    private bool GroundChecking()
+    {
+        _hitDetect = Physics.BoxCast(_transform.position, _transform.localScale, Vector3.down, out _hit, _transform.rotation, _grdDist, _grdLayer);
+
+        if (_hitDetect)
+            return true;
+
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawWireCube(transform.position + Vector3.down * _grdDist, transform.localScale);
     }
 
     protected override void Death()
@@ -73,6 +101,11 @@ public class Player : Entity
     public bool IsFalling
     {
         get { return _rb.velocity.y < 0; }
+    }
+
+    public bool IsGrounded
+    {
+        get { return _isGrounded; }
     }
     #endregion
 }

@@ -8,6 +8,8 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
+        Debug.Log("Salta");
+
         if (_player == null)
         {
             _player = stateManager.Player;
@@ -22,7 +24,7 @@ public class PlayerJumpState : PlayerBaseState
     {
         // como no puse que caiga de momento esta asi
         if (_player.IsFalling)
-            stateManager.SwitchState(PlayerStateManager.PlayerState.Idle);
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Fall);
     }
 
     public override void FixedUpdateState(PlayerStateManager stateManager)

@@ -23,6 +23,9 @@ public class PlayerJumpState : PlayerBaseState
         // como no puse que caiga de momento esta asi
         if (_player.IsFalling)
             stateManager.SwitchState(PlayerStateManager.PlayerState.Fall);
+
+        if (!_playerJump.IsJumping)
+            _playerJump.VariableJump();
     }
 
     public override void FixedUpdateState(PlayerStateManager stateManager)

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Invulnerability: 0
-  Speed: 30
+  Speed: 25
   HalfGravityLimit: 0.4
-  CoyoteMaxTimer: 0.3
+  CoyoteMaxTime: 0.3
+  JumpBufferTime: 2
   JumpStrength: 50
   Gravity: 10
   MouseSensitivity: 2

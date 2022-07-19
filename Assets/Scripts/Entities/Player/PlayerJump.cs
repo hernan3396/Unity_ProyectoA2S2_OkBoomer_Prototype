@@ -9,8 +9,10 @@ public class PlayerJump : MonoBehaviour
     private Transform _transform;
     private Rigidbody _rb;
     #endregion
+
     private bool _isJumping;
-    private float _coyoteTimer;
+    [SerializeField] private float _coyoteTimer;
+    [SerializeField] private int _bufferedJumps;
 
     private void Start()
     {
@@ -33,15 +35,36 @@ public class PlayerJump : MonoBehaviour
 
     private void Jumping(bool value)
     {
-        _isJumping = value && _coyoteTimer <= _data.CoyoteMaxTimer;
+        // if (value)
+        // {
+        //     _bufferedJumps += 1;
+        //     Invoke("RemoveBufferedJump", _data.JumpBufferTime);
+        // }
+
+        // _isJumping = (value && _coyoteTimer <= _data.CoyoteMaxTime) || _bufferedJumps > 0;
+        _isJumping = (value && _coyoteTimer <= _data.CoyoteMaxTime);
     }
 
     public void Jump()
     {
         _rb.velocity = new Vector3(_rb.velocity.x, _data.JumpStrength, _rb.velocity.z);
+
+        // una vez que saltes pone el buffer en 0
+        // CancelInvoke();
+        // _bufferedJumps = 0;
         // a veces saltaba doble, el error esta en la razon por la cual
         // salta dos veces pero, por que pasa eso?
         // _rb.AddForce(_transform.up * _data.JumpStrength, ForceMode.Impulse);
+    }
+
+    public void VariableJump()
+    {
+        _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y * 0.5f, _rb.velocity.z);
+    }
+
+    private void RemoveBufferedJump()
+    {
+        _bufferedJumps -= 1;
     }
 
     private void OnDestroy()

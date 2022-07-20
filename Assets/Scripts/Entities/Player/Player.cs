@@ -25,6 +25,13 @@ public class Player : Entity
     [SerializeField] private Transform _body;
     #endregion
 
+    #region Weapons
+    [Header("Weapons")]
+    // si va a variar en play time cambiar esto a una lista
+    [SerializeField] private WeaponScriptable[] _weapons;
+    [SerializeField] private Transform _shootPos;
+    #endregion
+
     #region GroundChecking
     [Header("Ground Checking")]
     [SerializeField, Range(0, 1)] private float _grdDist;
@@ -142,6 +149,16 @@ public class Player : Entity
     public Transform Body
     {
         get { return _body; }
+    }
+
+    public WeaponScriptable[] Weapons
+    {
+        get { return _weapons; }
+    }
+
+    public Transform ShootPos
+    {
+        get { return _shootPos; }
     }
     #endregion
 }

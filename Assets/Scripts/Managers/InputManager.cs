@@ -4,17 +4,25 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     #region Movement
+    [Header("Movement")]
     public bool CanMove = true;
     public Vector2 Move;
     #endregion
 
     #region Look
+    [Header("Look")]
     public bool CanLook = true;
     public Vector2 Look;
     #endregion
 
     #region Jumping
+    [Header("Jumping")]
     public bool Jump = false;
+    #endregion
+
+    #region Shooting
+    [Header("Shooting")]
+    public bool Shoot = false;
     #endregion
 
     #region MovementMethods
@@ -50,6 +58,13 @@ public class InputManager : MonoBehaviour
         Jump = value.isPressed;
         EventManager.OnJump(Jump);
     }
+    #endregion
 
+    #region ShootingMethods
+    public void OnShoot(InputValue value)
+    {
+        Shoot = value.isPressed; // de momento no se usa para nada
+        EventManager.OnShoot();
+    }
     #endregion
 }

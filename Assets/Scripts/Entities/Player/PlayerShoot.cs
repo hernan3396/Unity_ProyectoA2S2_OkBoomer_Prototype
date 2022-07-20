@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    private Player _player;
+    private WeaponScriptable[] _weapons;
 
+    private void Start()
+    {
+        _player = GetComponent<Player>();
+        _weapons = _player.Weapons;
+
+        EventManager.Shoot += Shoot;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Shoot()
     {
+        // ese 0 pasarle el del arma seleccionada luego
+        WeaponScriptable weapon = _weapons[0];
+        GameObject go = Instantiate(weapon.AmmoType, _player.ShootPos.position, Quaternion.identity, null);
+        go.GetComponent<Bullets>().ShootBullet(weapon.Damage, weapon.AmmoSpeed, _player.FpCamera.forward);
+    }
 
+    private void OnDestroy()
+    {
+        EventManager.Shoot -= Shoot;
     }
 }

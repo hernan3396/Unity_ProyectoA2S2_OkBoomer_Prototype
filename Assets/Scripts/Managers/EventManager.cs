@@ -11,4 +11,7 @@ public static class EventManager
 
     public static event UnityAction<bool> Jump;
     public static void OnJump(bool jump) => Jump?.Invoke(jump);
+
+    public static event UnityAction Shoot;
+    public static void OnShoot() => Shoot?.Invoke();
 }

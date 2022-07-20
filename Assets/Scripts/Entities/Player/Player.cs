@@ -19,6 +19,12 @@ public class Player : Entity
     private PlayerJump _playerJump;
     #endregion
 
+    #region BodyParts
+    [Header("Body Parts")]
+    [SerializeField] private Transform _fpCamera;
+    [SerializeField] private Transform _body;
+    #endregion
+
     #region GroundChecking
     [Header("Ground Checking")]
     [SerializeField, Range(0, 1)] private float _grdDist;
@@ -126,6 +132,16 @@ public class Player : Entity
     public bool IsGrounded
     {
         get { return _isGrounded; }
+    }
+
+    public Transform FpCamera
+    {
+        get { return _fpCamera; }
+    }
+
+    public Transform Body
+    {
+        get { return _body; }
     }
     #endregion
 }

@@ -4,20 +4,16 @@ using UnityEngine;
 public class PlayerLook : MonoBehaviour
 {
     #region Components
+    private Player _player;
     private PlayerScriptable _data;
-    #endregion
-
-    #region BodyParts
-    [Header("Body Parts")]
-    [SerializeField] private Transform _fpCamera;
-    [SerializeField] private Transform _body;
     #endregion
 
     private Vector2 _rotations = new Vector2(0, 90);
 
     private void Start()
     {
-        _data = GetComponent<Player>().Data;
+        _player = GetComponent<Player>();
+        _data = _player.Data;
         EventManager.Look += LookAtMouse;
     }
 
@@ -37,8 +33,8 @@ public class PlayerLook : MonoBehaviour
         Quaternion headRotation = Quaternion.AngleAxis(_rotations.x, Vector3.right);
         Quaternion bodyRotation = Quaternion.AngleAxis(_rotations.y, Vector3.up);
 
-        _fpCamera.localRotation = headRotation;
-        _body.localRotation = bodyRotation;
+        _player.FpCamera.localRotation = headRotation;
+        _player.Body.localRotation = bodyRotation;
     }
 
     private void OnDestroy()

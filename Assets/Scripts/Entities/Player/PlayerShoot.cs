@@ -16,7 +16,7 @@ public class PlayerShoot : MonoBehaviour
     private void Shoot()
     {
         // ese 0 pasarle el del arma seleccionada luego
-        WeaponScriptable weapon = _weapons[0];
+        WeaponScriptable weapon = _weapons[_player.CurrentWeapon];
         GameObject go = Instantiate(weapon.AmmoType, _player.ShootPos.position, Quaternion.identity, null);
         go.GetComponent<Bullets>().ShootBullet(weapon.Damage, weapon.AmmoSpeed, _player.FpCamera.forward);
     }

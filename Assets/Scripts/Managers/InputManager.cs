@@ -67,4 +67,15 @@ public class InputManager : MonoBehaviour
         EventManager.OnShoot();
     }
     #endregion
+
+    #region ChangeWeaponMethods
+    public void OnChangeWeapon(InputValue value)
+    {
+        float newValue = value.Get<float>();
+        if (newValue > 0)
+            EventManager.OnChangeWeapon(1);
+        else if (newValue < 0)
+            EventManager.OnChangeWeapon(-1);
+    }
+    #endregion
 }

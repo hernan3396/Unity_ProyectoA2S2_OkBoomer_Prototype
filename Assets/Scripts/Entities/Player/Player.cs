@@ -30,6 +30,8 @@ public class Player : Entity
     // si va a variar en play time cambiar esto a una lista
     [SerializeField] private WeaponScriptable[] _weapons;
     [SerializeField] private Transform _shootPos;
+    private int _currentWeapon = 0;
+    private int _maxWeapons;
     #endregion
 
     #region GroundChecking
@@ -50,6 +52,8 @@ public class Player : Entity
         _transform = GetComponent<Transform>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerJump = GetComponent<PlayerJump>();
+
+        _maxWeapons = _weapons.Length;
 
         if (TryGetComponent(out Rigidbody rb))
             _rb = rb;
@@ -90,6 +94,13 @@ public class Player : Entity
             _gravityMod = 0.5f;
         else
             _gravityMod = 1;
+    }
+    #endregion
+
+    #region WeaponMethods
+    public void ChangeWeapons(int value)
+    {
+        _currentWeapon = value;
     }
     #endregion
 
@@ -159,6 +170,16 @@ public class Player : Entity
     public Transform ShootPos
     {
         get { return _shootPos; }
+    }
+
+    public int CurrentWeapon
+    {
+        get { return _currentWeapon; }
+    }
+
+    public int MaxWeapons
+    {
+        get { return _maxWeapons; }
     }
     #endregion
 }

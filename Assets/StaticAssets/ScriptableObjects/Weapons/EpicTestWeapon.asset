@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca58fc39f8ec0e44a9e646653cd571c8, type: 3}
-  m_Name: TestWeapon
+  m_Name: EpicTestWeapon
   m_EditorClassIdentifier: 
-  Id: 0
-  Name: Test Weapon
+  Id: 1
+  Name: Epic Test Weapon
   Damage: 5
-  AmmoType: {fileID: 2655278983746728008, guid: d36239169e6de02468e36ceb095cb5c8,
+  AmmoType: {fileID: 4242668588667592804, guid: 5a23c142da2350c48b9d28b540cd86c6,
     type: 3}
-  AmmoSpeed: 100
-  MaxAmmo: 200
+  AmmoSpeed: 50
+  MaxAmmo: 20
   Model: {fileID: 0}

@@ -181,5 +181,10 @@ public class Player : Entity
     {
         get { return _maxWeapons; }
     }
+
+    public WeaponScriptable SelectedWeapon
+    {
+        get { return _weapons[_currentWeapon]; }
+    }
     #endregion
 }

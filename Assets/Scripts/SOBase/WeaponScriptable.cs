@@ -16,5 +16,5 @@ public class WeaponScriptable : ScriptableObject
 
     // esto lo dejo ya por si lo llegamos a usar de esta
     // manera (con el modelo en el scriptable)
-    public GameObject Model;
+    // public GameObject Model;
 }

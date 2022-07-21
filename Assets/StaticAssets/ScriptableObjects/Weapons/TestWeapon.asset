@@ -19,4 +19,3 @@ MonoBehaviour:
     type: 3}
   AmmoSpeed: 100
   MaxAmmo: 200
-  Model: {fileID: 0}

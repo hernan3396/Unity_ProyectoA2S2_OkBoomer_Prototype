@@ -15,8 +15,6 @@ MonoBehaviour:
   Id: 1
   Name: Epic Test Weapon
   Damage: 5
-  AmmoType: {fileID: 4242668588667592804, guid: 5a23c142da2350c48b9d28b540cd86c6,
-    type: 3}
+  AmmoType: {fileID: 11400000, guid: 6a7eb15c899fae64181d4112d5d8c882, type: 2}
   AmmoSpeed: 50
   MaxAmmo: 20
-  Model: {fileID: 0}

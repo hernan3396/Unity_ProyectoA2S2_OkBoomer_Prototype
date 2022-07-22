@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca58fc39f8ec0e44a9e646653cd571c8, type: 3}
-  m_Name: TestWeapon
+  m_Script: {fileID: 11500000, guid: ac8e6d345b1d8bf408089ae271fd59b6, type: 3}
+  m_Name: SimpleBullet
   m_EditorClassIdentifier: 
-  Id: 0
-  Name: Test Weapon
-  Damage: 5
-  AmmoType: {fileID: 11400000, guid: 491b7423abe2b35469f2f4bbcbcb5aba, type: 2}
-  AmmoSpeed: 100
-  MaxAmmo: 200
+  Duration: 1
+  Size: {x: 0.3, y: 0.3, z: 0.3}
+  Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}

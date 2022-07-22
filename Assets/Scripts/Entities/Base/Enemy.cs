@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Vector2 _spawnRange;
+    // para probar de mientras lo dejo asi
+    public void TakeDamage(int damage)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.position = new Vector3(Random.Range(_spawnRange.x, _spawnRange.y), transform.position.y, Random.Range(_spawnRange.x, _spawnRange.y));
     }
 }

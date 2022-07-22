@@ -9,7 +9,7 @@ public class WeaponScriptable : ScriptableObject
 
     #region Ammo
     [Header("Ammo")]
-    public GameObject AmmoType;
+    public BulletScriptable AmmoType;
     public int AmmoSpeed;
     public int MaxAmmo;
     #endregion

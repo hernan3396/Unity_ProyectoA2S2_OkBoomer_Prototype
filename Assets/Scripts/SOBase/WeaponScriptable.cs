@@ -14,6 +14,18 @@ public class WeaponScriptable : ScriptableObject
     public int MaxAmmo;
     #endregion
 
+    #region Cooldown
+    [Header("Cooldown")]
+    public float StartUpTime;
+    public float Cooldown;
+    #endregion
+
+    #region Recoil
+    [Header("Recoil")]
+    public int RecoilForce;
+    public float RecoilTime;
+    #endregion
+
     // esto lo dejo ya por si lo llegamos a usar de esta
     // manera (con el modelo en el scriptable)
     // public GameObject Model;

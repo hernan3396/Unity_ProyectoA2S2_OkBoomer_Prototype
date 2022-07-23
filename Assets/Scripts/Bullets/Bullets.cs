@@ -55,6 +55,8 @@ public abstract class Bullets : MonoBehaviour, IShootable
             DisableBullet();
     }
 
+    protected abstract void OnHit(Collision other);
+
     protected virtual void DisableBullet()
     {
         // resetea parametros
@@ -68,17 +70,6 @@ public abstract class Bullets : MonoBehaviour, IShootable
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.TryGetComponent(out Enemy enemy))
-            enemy.TakeDamage(_damage);
-
-        DisableBullet();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Enemy enemy))
-        {
-            enemy.TakeDamage(_damage);
-        }
+        OnHit(other);
     }
 }

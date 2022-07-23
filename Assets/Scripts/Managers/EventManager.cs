@@ -17,4 +17,7 @@ public static class EventManager
 
     public static event UnityAction<int> ChangeWeapon;
     public static void OnChangeWeapon(int side) => ChangeWeapon?.Invoke(side);
+
+    public static event UnityAction<bool> Pause;
+    public static void OnPause(bool value) => Pause?.Invoke(value);
 }

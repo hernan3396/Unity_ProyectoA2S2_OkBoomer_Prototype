@@ -1,11 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Player))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPausable
 {
     #region Components
     private PlayerScriptable _data;
     private Transform _transform;
+    private Player _player;
     private Rigidbody _rb;
     #endregion
 
@@ -13,13 +14,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        Player player = GetComponent<Player>();
+        _player = GetComponent<Player>();
 
-        _transform = player.Transform;
-        _data = player.Data;
-        _rb = player.RB;
+        _transform = _player.Transform;
+        _data = _player.Data;
+        _rb = _player.RB;
 
         EventManager.Move += ChangeDirection;
+        EventManager.Pause += OnPause;
     }
 
     private void ChangeDirection(Vector2 move)
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ApplyMovement()
     {
+        if (_player.Paused) return;
         Vector3 dir = (_transform.right * _dirInput.x + _transform.forward * _dirInput.y).normalized;
         Vector3 rbVelocity = dir * _data.Speed;
 
@@ -36,9 +39,16 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = rbVelocity;
     }
 
+    public void OnPause(bool value)
+    {
+        if (value)
+            _dirInput = Vector3.zero;
+    }
+
     private void OnDestroy()
     {
         EventManager.Move -= ChangeDirection;
+        EventManager.Pause -= OnPause;
     }
 
     public bool IsMoving

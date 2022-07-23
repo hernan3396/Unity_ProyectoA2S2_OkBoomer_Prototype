@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Player : Entity
+public class Player : Entity, IPausable
 {
     /*
     De momento (que esta medio simple) dejar 
@@ -121,7 +121,7 @@ public class Player : Entity
     #endregion
 
     #region PauseMethods
-    private void OnPause(bool value)
+    public void OnPause(bool value)
     {
         _isPaused = value;
 

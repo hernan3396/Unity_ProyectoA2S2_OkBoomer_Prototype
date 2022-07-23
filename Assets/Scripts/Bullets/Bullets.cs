@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Bullets : MonoBehaviour, IShootable
+public abstract class Bullets : MonoBehaviour, IShootable, IPausable
 {
     #region Components
     protected TrailRenderer _trailRenderer;
@@ -18,6 +18,12 @@ public abstract class Bullets : MonoBehaviour, IShootable
     protected int _speed;
     #endregion
 
+    #region Pause
+    protected Vector3 _lastAngVel; // algunas tienen velocidad angular
+    protected Vector3 _lastVel;
+    protected bool _isPaused;
+    #endregion
+
     private void Awake()
     {
         // componentes de modelo
@@ -27,6 +33,11 @@ public abstract class Bullets : MonoBehaviour, IShootable
         _trailRenderer = GetComponent<TrailRenderer>();
         _transform = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        EventManager.Pause += OnPause;
     }
 
     public virtual void Shoot()
@@ -49,6 +60,7 @@ public abstract class Bullets : MonoBehaviour, IShootable
 
     protected virtual void BulletLifetime()
     {
+        if (_isPaused) return;
         _bulletTimer += Time.deltaTime;
 
         if (_bulletTimer >= _data.Duration)
@@ -56,6 +68,31 @@ public abstract class Bullets : MonoBehaviour, IShootable
     }
 
     protected abstract void OnHit(Collision other);
+
+    public void OnPause(bool value)
+    {
+        _isPaused = value;
+
+        if (_isPaused)
+            PauseBullet();
+        else
+            ResumeBullet();
+    }
+
+    private void PauseBullet()
+    {
+        _lastAngVel = _rb.angularVelocity;
+        _lastVel = _rb.velocity;
+        _rb.velocity = Vector3.zero;
+        _rb.useGravity = false;
+    }
+
+    private void ResumeBullet()
+    {
+        _rb.angularVelocity = _lastAngVel;
+        _rb.velocity = _lastVel;
+        _rb.useGravity = true;
+    }
 
     protected virtual void DisableBullet()
     {
@@ -71,5 +108,10 @@ public abstract class Bullets : MonoBehaviour, IShootable
     private void OnCollisionEnter(Collision other)
     {
         OnHit(other);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Pause -= OnPause;
     }
 }

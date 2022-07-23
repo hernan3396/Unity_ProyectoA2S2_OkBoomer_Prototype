@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Player))]
-public class PlayerJump : MonoBehaviour
+public class PlayerJump : MonoBehaviour, IPausable
 {
     #region Components
     private Player _player;
@@ -44,6 +44,7 @@ public class PlayerJump : MonoBehaviour
 
     public void Jump()
     {
+        if (_player.Paused) return;
         _rb.velocity = new Vector3(_rb.velocity.x, _data.JumpStrength, _rb.velocity.z);
 
         // a veces saltaba doble, el error esta en la razon por la cual
@@ -56,6 +57,12 @@ public class PlayerJump : MonoBehaviour
         // esta se podria pasar a un metodo junto con la de Jump pero
         // para tan pocas lineas me parecio un poco innecesario
         _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y * 0.5f, _rb.velocity.z);
+    }
+
+    public void OnPause(bool value)
+    {
+        if (value)
+            _isJumping = false;
     }
 
     private void OnDestroy()

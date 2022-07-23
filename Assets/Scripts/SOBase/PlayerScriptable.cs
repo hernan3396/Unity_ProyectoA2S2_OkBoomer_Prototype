@@ -12,6 +12,7 @@ public class PlayerScriptable : ScriptableObject
     public float HalfGravityLimit;
     public float CoyoteMaxTime;
     public int JumpStrength;
+    public int FallMaxSpeed;
     public int Gravity;
     #endregion
 

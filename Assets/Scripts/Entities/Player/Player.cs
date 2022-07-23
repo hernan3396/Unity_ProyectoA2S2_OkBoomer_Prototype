@@ -44,7 +44,13 @@ public class Player : Entity
     #endregion
 
     #region Gravity
+    [Header("Gravity")]
     [SerializeField] private float _gravityMod = 1;
+    #endregion
+
+    #region Pause
+    private bool _isPaused = false;
+    private Vector3 _lastVel;
     #endregion
 
     private void Awake()
@@ -64,9 +70,19 @@ public class Player : Entity
         _invulnerability = _data.Invulnerability;
     }
 
+    private void Start()
+    {
+        EventManager.Pause += OnPause;
+    }
+
     private void FixedUpdate()
     {
+        if (_isPaused) return;
+
         _rb.AddForce(Physics.gravity * _data.Gravity * _gravityMod, ForceMode.Acceleration);
+
+        if (_rb.velocity.y < _data.FallMaxSpeed)
+            _rb.velocity = new Vector3(_rb.velocity.x, _data.FallMaxSpeed, _rb.velocity.z);
 
         _isGrounded = GroundChecking();
     }
@@ -104,6 +120,31 @@ public class Player : Entity
     }
     #endregion
 
+    #region PauseMethods
+    private void OnPause(bool value)
+    {
+        _isPaused = value;
+
+        if (_isPaused)
+            PausePlayer();
+        else
+            ResumePlayer();
+    }
+
+    private void PausePlayer()
+    {
+        _lastVel = _rb.velocity;
+        _rb.velocity = Vector3.zero;
+        _rb.useGravity = false;
+    }
+
+    private void ResumePlayer()
+    {
+        _rb.velocity = _lastVel;
+        _rb.useGravity = true;
+    }
+    #endregion
+
     protected override void Death()
     {
         throw new System.NotImplementedException();
@@ -114,6 +155,11 @@ public class Player : Entity
         Gizmos.color = Color.blue;
 
         Gizmos.DrawWireCube(transform.position + Vector3.down * _grdDist, transform.localScale);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Pause -= OnPause;
     }
 
     #region Getter/Setters
@@ -185,6 +231,11 @@ public class Player : Entity
     public WeaponScriptable SelectedWeapon
     {
         get { return _weapons[_currentWeapon]; }
+    }
+
+    public bool Paused
+    {
+        get { return _isPaused; }
     }
     #endregion
 }

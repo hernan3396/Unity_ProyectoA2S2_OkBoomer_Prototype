@@ -30,6 +30,11 @@ public class InputManager : MonoBehaviour
     public bool Pause = false;
     #endregion
 
+    private void Start()
+    {
+        EventManager.ResumeMenu += OnPause;
+    }
+
     #region MovementMethods
     public void OnMove(InputValue value)
     {
@@ -89,7 +94,7 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region PauseMethods
-    public void OnPause(InputValue value)
+    public void OnPause()
     {
         Pause = !Pause;
         CanMove = !Pause;
@@ -103,4 +108,9 @@ public class InputManager : MonoBehaviour
         EventManager.OnPause(Pause);
     }
     #endregion
+
+    private void OnDestroy()
+    {
+        EventManager.ResumeMenu -= OnPause;
+    }
 }

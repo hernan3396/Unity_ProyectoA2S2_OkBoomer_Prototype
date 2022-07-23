@@ -20,4 +20,7 @@ public static class EventManager
 
     public static event UnityAction<bool> Pause;
     public static void OnPause(bool value) => Pause?.Invoke(value);
+
+    public static event UnityAction ResumeMenu;
+    public static void OnResumeMenu() => ResumeMenu?.Invoke();
 }

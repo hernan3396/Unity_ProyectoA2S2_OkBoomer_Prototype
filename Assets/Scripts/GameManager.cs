@@ -12,11 +12,6 @@ public class GameManager : MonoBehaviour
             _instance = this;
     }
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     private void OnDestroy()
     {
         if (_instance != null)

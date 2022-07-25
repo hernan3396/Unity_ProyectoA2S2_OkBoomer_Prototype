@@ -5,7 +5,13 @@ public class PlayerScriptable : ScriptableObject
 {
     public int MaxHealth;
     public int Invulnerability;
+
+    #region Movement
+    [Header("Movement")]
+    public float CrouchTimer;
+    public int CrouchVel;
     public int Speed;
+    #endregion
 
     #region Jump
     [Header("Jump")]

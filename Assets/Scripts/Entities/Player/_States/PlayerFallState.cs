@@ -7,7 +7,7 @@ public class PlayerFallState : PlayerBaseState
     private PlayerMovement _playerMov;
 
     #region GravityChange
-    [SerializeField] private float _gravityTimer;
+    private float _gravityTimer;
     private bool _changedGravity;
     #endregion
 

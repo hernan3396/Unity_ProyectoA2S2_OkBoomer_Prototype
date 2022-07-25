@@ -16,6 +16,7 @@ public class Player : Entity, IPausable
 
     #region Scripts
     private PlayerMovement _playerMovement;
+    private PlayerCrouch _playerCrouch;
     private PlayerJump _playerJump;
     #endregion
 
@@ -53,10 +54,16 @@ public class Player : Entity, IPausable
     private Vector3 _lastVel;
     #endregion
 
+    #region Hitboxes
+    [SerializeField] private Transform[] _cameraPositions;
+    [SerializeField] private GameObject[] _hitboxes;
+    #endregion
+
     private void Awake()
     {
         _transform = GetComponent<Transform>();
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerCrouch = GetComponent<PlayerCrouch>();
         _playerJump = GetComponent<PlayerJump>();
 
         _maxWeapons = _weapons.Length;
@@ -178,6 +185,11 @@ public class Player : Entity, IPausable
         get { return _playerJump; }
     }
 
+    public PlayerCrouch PlayerCrouch
+    {
+        get { return _playerCrouch; }
+    }
+
     public Transform Transform
     {
         get { return _transform; }
@@ -236,6 +248,16 @@ public class Player : Entity, IPausable
     public bool Paused
     {
         get { return _isPaused; }
+    }
+
+    public GameObject[] Hitboxes
+    {
+        get { return _hitboxes; }
+    }
+
+    public Transform[] CameraPositions
+    {
+        get { return _cameraPositions; }
     }
     #endregion
 }

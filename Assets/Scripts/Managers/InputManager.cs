@@ -30,6 +30,10 @@ public class InputManager : MonoBehaviour
     public bool Pause = false;
     #endregion
 
+    #region Crouch
+    public bool Crouch;
+    #endregion
+
     private void Start()
     {
         EventManager.ResumeMenu += OnPause;
@@ -104,6 +108,15 @@ public class InputManager : MonoBehaviour
     }
     #endregion
 
+    #region CrouchMethods
+    public void OnCrouch(InputValue value)
+    {
+        if (!CanMove) return;
+
+        Crouch = value.isPressed;
+        EventManager.OnCrouch(Crouch);
+    }
+    #endregion
     private void OnDestroy()
     {
         EventManager.ResumeMenu -= OnPause;

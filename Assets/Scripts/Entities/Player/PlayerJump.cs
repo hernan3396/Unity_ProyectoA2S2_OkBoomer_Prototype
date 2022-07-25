@@ -62,7 +62,6 @@ public class PlayerJump : MonoBehaviour, IPausable
 
     public void OnPause(bool value)
     {
-        Debug.Log("Test");
         if (value)
             _isJumping = false;
     }

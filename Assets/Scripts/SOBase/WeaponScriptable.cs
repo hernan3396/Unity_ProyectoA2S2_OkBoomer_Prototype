@@ -5,19 +5,19 @@ public class WeaponScriptable : ScriptableObject
 {
     public int Id;
     public string Name;
+
+    #region Stats
+    [Header("Stats")]
+    public float Cooldown;
+    public float Startup;
     public int Damage;
+    #endregion
 
     #region Ammo
     [Header("Ammo")]
     public BulletScriptable AmmoType;
     public int AmmoSpeed;
     public int MaxAmmo;
-    #endregion
-
-    #region Cooldown
-    [Header("Cooldown")]
-    public float StartUpTime;
-    public float Cooldown;
     #endregion
 
     #region Recoil

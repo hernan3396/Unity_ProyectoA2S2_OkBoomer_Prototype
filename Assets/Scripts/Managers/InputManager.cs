@@ -76,7 +76,7 @@ public class InputManager : MonoBehaviour
         if (!CanLook) return;
 
         Shoot = value.isPressed; // de momento no se usa para nada
-        EventManager.OnShoot();
+        EventManager.OnShoot(Shoot);
     }
     #endregion
 
@@ -99,11 +99,6 @@ public class InputManager : MonoBehaviour
         Pause = !Pause;
         CanMove = !Pause;
         CanLook = !Pause;
-
-        // frena el movimiento de las inputs
-        // sino queda saltando o moviendose
-        Jump = false;
-        EventManager.OnJump(Jump);
 
         EventManager.OnPause(Pause);
     }

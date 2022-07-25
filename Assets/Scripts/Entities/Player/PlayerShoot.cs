@@ -1,23 +1,58 @@
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShoot : MonoBehaviour, IPausable
 {
-    private Player _player;
-    private WeaponScriptable _weapon;
     [SerializeField] private PoolManager _test;
+    private WeaponScriptable _weapon;
+    private Player _player;
+
+    #region Shoot
+    private bool _isShooting = false;
+    private bool _canShoot = true;
+    private float _shootTimer;
+    private bool _weaponOnCD;
+    #endregion
+
+    private bool _isPaused = false;
 
     private void Start()
     {
         _player = GetComponent<Player>();
 
-        EventManager.Shoot += Shoot;
+        EventManager.Shoot += ShootInput;
+        EventManager.Pause += OnPause;
+    }
+
+    private void Update()
+    {
+        if (_isPaused) return;
+
+        if (_weaponOnCD)
+        {
+            WeaponCooldown();
+            return;
+        }
+
+        if (_isShooting && _canShoot)
+            Shoot();
+    }
+
+    private void ShootInput(bool value)
+    {
+        _isShooting = value;
     }
 
     private void Shoot()
     {
+        _canShoot = false;
+        _weaponOnCD = true;
+
         // weaponSelected
         _weapon = _player.SelectedWeapon;
+
         GameObject newBullet = _test.GetPooledObject();
+        if (!newBullet) return;
+
         newBullet.transform.position = _player.ShootPos.position;
         newBullet.transform.rotation = _player.FpCamera.rotation;
 
@@ -29,8 +64,30 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
+    private void WeaponCooldown()
+    {
+        _shootTimer += Time.deltaTime;
+
+        if (_shootTimer >= _weapon.Cooldown)
+            ResetShoot();
+    }
+
+    private void ResetShoot()
+    {
+        _shootTimer = 0;
+        _canShoot = true;
+        _weaponOnCD = false;
+    }
+
+    public void OnPause(bool value)
+    {
+        _isShooting = false;
+        _isPaused = value;
+    }
+
     private void OnDestroy()
     {
-        EventManager.Shoot -= Shoot;
+        EventManager.Shoot -= ShootInput;
+        EventManager.Pause -= OnPause;
     }
 }

@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   Name: Epic Test Weapon
+  Cooldown: 1
+  Startup: 0
   Damage: 5
   AmmoType: {fileID: 11400000, guid: 6a7eb15c899fae64181d4112d5d8c882, type: 2}
   AmmoSpeed: 50
   MaxAmmo: 20
+  RecoilForce: 0
+  RecoilTime: 0

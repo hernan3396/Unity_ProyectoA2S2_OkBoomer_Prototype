@@ -22,6 +22,7 @@ public class PlayerJump : MonoBehaviour, IPausable
         _rb = _player.RB;
 
         EventManager.Jump += Jumping;
+        EventManager.Pause += OnPause;
     }
 
     private void Update()
@@ -61,6 +62,7 @@ public class PlayerJump : MonoBehaviour, IPausable
 
     public void OnPause(bool value)
     {
+        Debug.Log("Test");
         if (value)
             _isJumping = false;
     }
@@ -68,6 +70,7 @@ public class PlayerJump : MonoBehaviour, IPausable
     private void OnDestroy()
     {
         EventManager.Jump -= Jumping;
+        EventManager.Pause -= OnPause;
     }
 
     public bool IsJumping

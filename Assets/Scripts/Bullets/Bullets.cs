@@ -50,8 +50,8 @@ public abstract class Bullets : MonoBehaviour, IShootable, IPausable
         _data = data;
 
         // ajustes visuales
-        _meshFilter.mesh = data.Mesh;
-        _transform.localScale = _data.Size;
+        // _meshFilter.mesh = data.Mesh;
+        // _transform.localScale = _data.Size;
 
         // ajustes de estadisticas
         _damage = damage;

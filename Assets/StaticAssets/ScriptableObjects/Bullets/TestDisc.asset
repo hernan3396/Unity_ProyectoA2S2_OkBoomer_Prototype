@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: TestDisc
   m_EditorClassIdentifier: 
   Duration: 1
-  Size: {x: 3, y: 0.2, z: 0.5}
-  Mesh: {fileID: -5495902117074765545, guid: 31dbaa6165ffbed43a4355a9af8742d6, type: 3}
+  AmmoType: 1

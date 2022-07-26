@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour, IPausable
 {
-    [SerializeField] private PoolManager _test;
+    [SerializeField] private PoolManager[] _bulletsPool;
     private WeaponScriptable _weapon;
     private Player _player;
 
@@ -50,7 +50,7 @@ public class PlayerShoot : MonoBehaviour, IPausable
         // weaponSelected
         _weapon = _player.SelectedWeapon;
 
-        GameObject newBullet = _test.GetPooledObject();
+        GameObject newBullet = _bulletsPool[(int)_weapon.AmmoType.AmmoType].GetPooledObject();
         if (!newBullet) return;
 
         newBullet.transform.position = _player.ShootPos.position;

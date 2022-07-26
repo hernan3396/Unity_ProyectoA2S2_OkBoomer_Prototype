@@ -7,7 +7,7 @@ public class Platforms : MonoBehaviour
     [Header("Position")]
     [SerializeField] private Transform _finalPos;
     [SerializeField] private float _vel = 1;
-    [SerializeField] private Ease _easeFunc = Ease.Linear;
+    [SerializeField] private Ease _easeFunc = Ease.InOutSine;
     #endregion
 
     #region Settings

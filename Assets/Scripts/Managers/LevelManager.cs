@@ -7,24 +7,40 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        EventManager.GoToNextLevel += OnNextLevel;
         EventManager.Pause += OnPause;
     }
 
     public void OnPause(bool value)
     {
-        LoadAsync(_pauseScene, value);
+        LoadLevel(_pauseScene, true);
     }
 
-    private void LoadAsync(string scene, bool load)
+    public void OnNextLevel(string scene)
     {
-        if (load)
+        LoadLevel(scene);
+    }
+
+    public void LoadLevel(string scene, bool async = false)
+    {
+        if (async)
+        {
+            if (SceneManager.GetSceneByName(scene).isLoaded)
+            {
+                SceneManager.UnloadSceneAsync(scene);
+                return;
+            }
+
             SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
-        else if (SceneManager.GetSceneByName(scene).isLoaded) // chequeo por las dudas supongo
-            SceneManager.UnloadSceneAsync(scene);
+            return;
+        }
+
+        SceneManager.LoadScene(scene);
     }
 
     private void OnDestroy()
     {
+        EventManager.GoToNextLevel -= OnNextLevel;
         EventManager.Pause -= OnPause;
     }
 }

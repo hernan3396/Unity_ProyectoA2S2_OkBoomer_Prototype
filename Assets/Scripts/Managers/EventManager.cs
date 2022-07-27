@@ -9,6 +9,9 @@ public static class EventManager
     public static event UnityAction ResumeMenu;
     public static void OnResumeMenu() => ResumeMenu?.Invoke();
 
+    public static event UnityAction<string> GoToNextLevel;
+    public static void OnGoToNextLevel(string nextLevel) => GoToNextLevel?.Invoke(nextLevel);
+
     #region PlayerInputs
     public static event UnityAction<Vector2> Move;
     public static void OnMove(Vector2 move) => Move?.Invoke(move);

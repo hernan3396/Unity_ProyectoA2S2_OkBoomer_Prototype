@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-
 public class RangedEnemy : Enemy
 {
     public NavMeshAgent agent;
@@ -8,6 +7,8 @@ public class RangedEnemy : Enemy
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
+
+    //public float health;
 
     //Patroling
     public Vector3 walkPoint;
@@ -86,7 +87,7 @@ public class RangedEnemy : Enemy
             ///End of attack code
 
             alreadyAttacked = true;
-            Invoke("ResetAttack", timeBetweenAttacks);
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
     private void ResetAttack()
@@ -94,6 +95,12 @@ public class RangedEnemy : Enemy
         alreadyAttacked = false;
     }
 
+    //public void TakeDamage(int damage)
+    //{
+        //health -= damage;
+
+        //if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+   //}
     private void DestroyEnemy()
     {
         Destroy(gameObject);
@@ -106,4 +113,5 @@ public class RangedEnemy : Enemy
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+
 }

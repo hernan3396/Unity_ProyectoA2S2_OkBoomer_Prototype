@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyScriptable : MonoBehaviour
+[CreateAssetMenu(fileName = "NewEnemy", menuName = "OK Boomer/New Enemy", order = 0)]
+public class EnemyScriptable : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int MaxHealth;
+    public float Invulnerability;
+    public int Speed;
+    public WeaponScriptable Weapon;
+    public int VisionRange;
 }

@@ -88,6 +88,7 @@ public class Player : Entity, IPausable
 
         _rb.AddForce(Physics.gravity * _data.Gravity * _gravityMod, ForceMode.Acceleration);
 
+        // _rb.velocity = _utilsMov.LimitFallSpeed(_rb.velocity, _data.FallMaxSpeed);
         if (_rb.velocity.y < _data.FallMaxSpeed)
             _rb.velocity = new Vector3(_rb.velocity.x, _data.FallMaxSpeed, _rb.velocity.z);
 

@@ -18,7 +18,7 @@ public abstract class Entity : MonoBehaviour, IDamagable
         TakeDamage(value);
     }
 
-    protected virtual void TakeDamage(int value)
+    public virtual void TakeDamage(int value)
     {
         if (_isInmune) return;
         _isInmune = true;

@@ -1,11 +1,49 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : Entity, IDamagable, IPausable
 {
-    [SerializeField] private Vector2 _spawnRange;
-    // para probar de mientras lo dejo asi
-    public void TakeDamage(int damage)
+    #region Components
+    [SerializeField] private EnemyScriptable _data;
+    private Rigidbody _rb;
+    #endregion
+
+    #region Pause
+    private bool _isPaused = false;
+    private Vector3 _lastVel;
+    #endregion
+
+    private void Awake()
     {
-        transform.position = new Vector3(Random.Range(_spawnRange.x, _spawnRange.y), transform.position.y, Random.Range(_spawnRange.x, _spawnRange.y));
+        _rb = GetComponent<Rigidbody>();
+    }
+
+    #region Pause
+    public void OnPause(bool value)
+    {
+        _isPaused = value;
+    }
+
+    protected virtual void PauseEnemy()
+    {
+        _lastVel = _rb.velocity;
+        _rb.velocity = Vector3.zero;
+        _rb.useGravity = false;
+    }
+    protected virtual void ResumeEnemy()
+    {
+        _rb.velocity = _lastVel;
+        _rb.useGravity = true;
+    }
+    #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _data.VisionRange);
+    }
+
+    protected override void Death()
+    {
+        throw new System.NotImplementedException();
     }
 }

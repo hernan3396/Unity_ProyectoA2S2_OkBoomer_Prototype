@@ -12,7 +12,6 @@ public class MainMenu : MonoBehaviour
 
     #region Other
     [Header("Other")]
-    [SerializeField] private RectTransform _nextLevelPanel;
     [SerializeField] private Button _selectedBtn;
     [SerializeField] private int _fadeDur;
     #endregion
@@ -20,7 +19,6 @@ public class MainMenu : MonoBehaviour
     #region CanvasGroups
     [Header("Canvas Groups")]
     [SerializeField] private CanvasGroup _mainMenuCG;
-    [SerializeField] private CanvasGroup _levelSelectCG;
     private CanvasGroup _currentCG;
     #endregion
 
@@ -66,11 +64,7 @@ public class MainMenu : MonoBehaviour
 
     public void GoToNextLevel(string value)
     {
-        // cambiar esta parte al level manager asi lo hace desde ahi
-        _nextLevelPanel.gameObject.SetActive(true);
-        _nextLevelPanel.DOScaleX(1.05f, _fadeDur * 3) // por lo visto 1 no es exacto el tamaño de la pantalla asi que lo hago un poco mas grande
-        .SetEase(Ease.OutExpo)
-        .OnComplete(() => EventManager.OnGoToNextLevel(value));
+        EventManager.OnGoToNextLevel(value);
     }
 
     private void RotateCamera()

@@ -3520,6 +3520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseScene: Pause
+  _transitionPanel: {fileID: 2067563434}
+  _fadeDur: 3
 --- !u!114 &661340062
 MonoBehaviour:
   m_ObjectHideFlags: 0

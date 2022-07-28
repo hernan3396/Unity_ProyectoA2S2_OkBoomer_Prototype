@@ -5,8 +5,6 @@ using DG.Tweening;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private Button _selectedBtn;
-    [SerializeField] private RectTransform _levelPanel;
-    [SerializeField] private int _fadeDur;
 
     private void Awake()
     {
@@ -20,10 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu(string value)
     {
-        _levelPanel.gameObject.SetActive(true);
-        _levelPanel.DOScaleX(1.05f, _fadeDur)
-        .SetEase(Ease.OutExpo)
-        .OnComplete(() => EventManager.OnGoToNextLevel(value));
+        EventManager.OnGoToNextLevel(value);
     }
 
     public void Quit()

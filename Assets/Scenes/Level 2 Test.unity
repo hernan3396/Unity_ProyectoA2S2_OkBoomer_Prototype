@@ -6993,6 +6993,7 @@ MonoBehaviour:
     type: 3}
   playerInSightRange: 0
   playerInAttackRange: 0
+  _shootingPos: {fileID: 532061145}
 --- !u!195 &1224601872
 NavMeshAgent:
   m_ObjectHideFlags: 0

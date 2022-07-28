@@ -83,8 +83,8 @@ public class RangedEnemy : Enemy
             ///Attack code here
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 64f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            ///End of attack code
+            rb.AddForce(transform.up * Random.Range(8f, -2f), ForceMode.Impulse);
+            rb.AddForce(transform.right * Random.Range(5f, -5f), ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

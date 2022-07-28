@@ -3,7 +3,6 @@ using UnityEngine.AI;
 public class RangedEnemy : Enemy
 {
     public NavMeshAgent agent;
-
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
@@ -13,7 +12,7 @@ public class RangedEnemy : Enemy
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
-    public float walkPointRange;
+    // public float walkPointRange;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -21,10 +20,12 @@ public class RangedEnemy : Enemy
     public GameObject projectile;
 
     //States
-    public float sightRange, attackRange;
+    // public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    private void Awake()
+    [SerializeField] private Transform _shootingPos;
+
+    private void Start()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -33,8 +34,8 @@ public class RangedEnemy : Enemy
     private void Update()
     {
         //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        playerInSightRange = Physics.CheckSphere(transform.position, _data.VisionRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, _data.AttackRange, whatIsPlayer);
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
@@ -57,8 +58,8 @@ public class RangedEnemy : Enemy
     private void SearchWalkPoint()
     {
         //Calculate random point in range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        float randomZ = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
+        float randomX = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
@@ -81,12 +82,25 @@ public class RangedEnemy : Enemy
         if (!alreadyAttacked)
         {
             ///Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 64f, ForceMode.Impulse);
-            rb.AddForce(transform.up * Random.Range(8f, -2f), ForceMode.Impulse);
-            rb.AddForce(transform.right * Random.Range(5f, -5f), ForceMode.Impulse);
+            GameObject newBullet = _bulletsPool.GetPooledObject();
+            if (!newBullet) return;
 
-            alreadyAttacked = true;
+            newBullet.transform.position = _shootingPos.position;
+            newBullet.transform.rotation = transform.rotation;
+
+            if (newBullet.TryGetComponent(out Bullets bullet))
+            {
+                bullet.SetData(_data.Weapon.Damage, _data.Weapon.AmmoSpeed, _data.Weapon.AmmoType);
+                newBullet.SetActive(true);
+                bullet.Shoot();
+                alreadyAttacked = true;
+            }
+
+            // Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            // rb.AddForce(transform.forward * 64f, ForceMode.Impulse);
+            // rb.AddForce(transform.up * Random.Range(8f, -2f), ForceMode.Impulse);
+            // rb.AddForce(transform.right * Random.Range(5f, -5f), ForceMode.Impulse);
+
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -97,21 +111,21 @@ public class RangedEnemy : Enemy
 
     //public void TakeDamage(int damage)
     //{
-        //health -= damage;
+    //health -= damage;
 
-        //if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-   //}
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
-    }
+    //if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+    //}
+    // private void DestroyEnemy()
+    // {
+    //     Destroy(gameObject);
+    // }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, _data.AttackRange);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.DrawWireSphere(transform.position, _data.VisionRange);
     }
 
 }

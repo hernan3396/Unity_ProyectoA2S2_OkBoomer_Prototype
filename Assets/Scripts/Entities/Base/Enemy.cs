@@ -3,7 +3,8 @@ using UnityEngine;
 public abstract class Enemy : Entity, IDamagable, IPausable
 {
     #region Components
-    [SerializeField] private EnemyScriptable _data;
+    [SerializeField] protected PoolManager _bulletsPool;
+    [SerializeField] protected EnemyScriptable _data;
     private Rigidbody _rb;
     #endregion
 
@@ -15,6 +16,8 @@ public abstract class Enemy : Entity, IDamagable, IPausable
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+
+        _currentHp = _data.MaxHealth;
     }
 
     #region Pause
@@ -44,6 +47,6 @@ public abstract class Enemy : Entity, IDamagable, IPausable
 
     protected override void Death()
     {
-        throw new System.NotImplementedException();
+        gameObject.SetActive(false);
     }
 }

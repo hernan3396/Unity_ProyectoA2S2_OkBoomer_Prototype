@@ -9,7 +9,7 @@ public abstract class Entity : MonoBehaviour, IDamagable
 
     #region Parameters
     protected int _currentHp;
-    protected bool _isInmune = true;
+    protected bool _isInmune = false;
     protected int _invulnerability;
     #endregion
 
@@ -22,6 +22,8 @@ public abstract class Entity : MonoBehaviour, IDamagable
     {
         if (_isInmune) return;
         _isInmune = true;
+
+        _currentHp -= value;
 
         StartCoroutine("InmuneReset");
 

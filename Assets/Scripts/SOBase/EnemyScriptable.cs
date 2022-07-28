@@ -5,7 +5,15 @@ public class EnemyScriptable : ScriptableObject
 {
     public int MaxHealth;
     public float Invulnerability;
-    public int Speed;
     public WeaponScriptable Weapon;
+
+    #region Movement
+    public int Speed;
+    public int WalkPointRange;
+    #endregion
+
+    #region Vision
     public int VisionRange;
+    public int AttackRange;
+    #endregion
 }

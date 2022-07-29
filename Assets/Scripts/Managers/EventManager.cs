@@ -12,6 +12,18 @@ public static class EventManager
     public static event UnityAction<string> GoToNextLevel;
     public static void OnGoToNextLevel(string nextLevel) => GoToNextLevel?.Invoke(nextLevel);
 
+    public static event UnityAction GameStart;
+    public static void OnGameStart() => GameStart?.Invoke();
+
+    public static event UnityAction StartUI;
+    public static void OnStartUI() => StartUI?.Invoke();
+
+    public static event UnityAction GameOver;
+    public static void OnGameOver() => GameOver?.Invoke();
+
+    public static event UnityAction<UIManager.Element, int> UpdateUI;
+    public static void OnUpdateUI(UIManager.Element element, int value) => UpdateUI.Invoke(element, value);
+
     #region PlayerInputs
     public static event UnityAction<Vector2> Move;
     public static void OnMove(Vector2 move) => Move?.Invoke(move);

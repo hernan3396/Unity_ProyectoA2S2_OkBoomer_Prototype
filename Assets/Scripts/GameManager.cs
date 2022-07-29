@@ -26,10 +26,24 @@ public class GameManager : MonoBehaviour
     // no se donde ponerlo
     private void StartLevel()
     {
+
         _levelPanel.gameObject.SetActive(true);
         _levelPanel.DOScaleX(0, _fadeDur)
         .SetEase(Ease.OutExpo)
-        .OnComplete(() => _levelPanel.gameObject.SetActive(false));
+        .OnComplete(() =>
+        {
+            _levelPanel.gameObject.SetActive(false);
+            EventManager.OnStartUI();
+            Invoke("StartGame", 0.1f);
+        });
+    }
+
+    private void StartGame()
+    {
+        // "esperamos" .1 segundo luego de arrancar la ui para que pueda actualizarla
+        // sino tiraba un error, por eso los separe e hice eso raro
+        EventManager.OnGameStart();
+
     }
 
     private void OnDestroy()

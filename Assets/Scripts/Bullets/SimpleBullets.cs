@@ -12,6 +12,9 @@ public class SimpleBullets : Bullets
         if (other.transform.TryGetComponent(out Enemy enemy))
             enemy.TakeDamage(_damage);
 
+        if (other.transform.TryGetComponent(out Player player))
+            player.TakeDamage(_damage);
+
         DisableBullet();
     }
 }

@@ -79,6 +79,7 @@ public class Player : Entity, IPausable
 
     private void Start()
     {
+        EventManager.GameStart += OnGameStart;
         EventManager.Pause += OnPause;
     }
 
@@ -93,6 +94,11 @@ public class Player : Entity, IPausable
             _rb.velocity = new Vector3(_rb.velocity.x, _data.FallMaxSpeed, _rb.velocity.z);
 
         _isGrounded = GroundChecking();
+    }
+
+    private void OnGameStart()
+    {
+        EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
     }
 
     #region GroundCheckingMethods
@@ -153,9 +159,14 @@ public class Player : Entity, IPausable
     }
     #endregion
 
+    public override void TakeDamage(int value)
+    {
+        base.TakeDamage(value);
+        EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
+    }
     protected override void Death()
     {
-        throw new System.NotImplementedException();
+        EventManager.OnGameOver();
     }
 
     private void OnDrawGizmos()
@@ -167,6 +178,7 @@ public class Player : Entity, IPausable
 
     private void OnDestroy()
     {
+        EventManager.GameStart -= OnGameStart;
         EventManager.Pause -= OnPause;
     }
 

@@ -4,13 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private string _pauseScene;
+    [SerializeField] private string _pauseScene = "Pause";
+    [SerializeField] private string _uiScene = "UI";
     [SerializeField] private RectTransform _transitionPanel;
     [SerializeField] private int _fadeDur;
 
     private void Start()
     {
         EventManager.GoToNextLevel += OnNextLevel;
+        EventManager.GameOver += OnGameOver;
+        EventManager.StartUI += OnStartUI;
         EventManager.Pause += OnPause;
     }
 
@@ -19,10 +22,13 @@ public class LevelManager : MonoBehaviour
         LoadLevel(_pauseScene, true);
     }
 
+    public void OnStartUI()
+    {
+        LoadLevel(_uiScene, true);
+    }
+
     public void OnNextLevel(string scene)
     {
-        DOTween.KillAll();
-
         _transitionPanel.gameObject.SetActive(true);
         _transitionPanel.DOScaleX(1.05f, _fadeDur)
         .SetEase(Ease.OutExpo)
@@ -43,12 +49,20 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
+        DOTween.KillAll();
         SceneManager.LoadScene(scene);
+    }
+
+    private void OnGameOver()
+    {
+        LoadLevel(SceneManager.GetActiveScene().name);
     }
 
     private void OnDestroy()
     {
         EventManager.GoToNextLevel -= OnNextLevel;
+        EventManager.GameOver -= OnGameOver;
+        EventManager.StartUI -= OnStartUI;
         EventManager.Pause -= OnPause;
     }
 }

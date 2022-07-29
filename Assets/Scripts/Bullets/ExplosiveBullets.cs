@@ -18,6 +18,6 @@ public class ExplosiveBullets : Bullets, IExplosive
 
     public void Explosion()
     {
-        Debug.Log("Explosion");
+        // Debug.Log("Explosion");
     }
 }

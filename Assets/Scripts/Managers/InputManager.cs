@@ -37,6 +37,20 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         EventManager.ResumeMenu += OnPause;
+        EventManager.StartUI += OnGameStart;
+        EventManager.GameOver += OnGameOver;
+    }
+
+    private void OnGameStart()
+    {
+        CanMove = true;
+        CanLook = true;
+    }
+
+    private void OnGameOver()
+    {
+        CanMove = false;
+        CanLook = false;
     }
 
     #region MovementMethods
@@ -120,5 +134,7 @@ public class InputManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.ResumeMenu -= OnPause;
+        EventManager.StartUI -= OnGameStart;
+        EventManager.GameOver -= OnGameOver;
     }
 }

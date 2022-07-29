@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     {
         EventManager.UpdateUI += UpdateUI;
         EventManager.GameStart += OnGameStart;
+        EventManager.GameOver += OnGameOver;
     }
 
     private void OnGameStart()
@@ -25,6 +26,14 @@ public class UIManager : MonoBehaviour
         foreach (UiElement element in _uiElements)
         {
             element.Element.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnGameOver()
+    {
+        foreach (UiElement element in _uiElements)
+        {
+            element.Element.gameObject.SetActive(false);
         }
     }
 
@@ -37,6 +46,7 @@ public class UIManager : MonoBehaviour
     {
         EventManager.UpdateUI -= UpdateUI;
         EventManager.GameStart -= OnGameStart;
+        EventManager.GameOver -= OnGameOver;
     }
 }
 

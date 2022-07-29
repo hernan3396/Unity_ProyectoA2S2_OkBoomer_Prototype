@@ -55,7 +55,11 @@ public class LevelManager : MonoBehaviour
 
     private void OnGameOver()
     {
-        LoadLevel(SceneManager.GetActiveScene().name);
+        _transitionPanel.localScale = new Vector3(0, 1.1f, 1);
+        _transitionPanel.gameObject.SetActive(true);
+        _transitionPanel.DOScale(1.05f, _fadeDur)
+        .SetEase(Ease.OutExpo)
+        .OnComplete(() => LoadLevel(SceneManager.GetActiveScene().name));
     }
 
     private void OnDestroy()

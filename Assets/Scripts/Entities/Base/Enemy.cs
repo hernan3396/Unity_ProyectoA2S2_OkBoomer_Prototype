@@ -5,6 +5,7 @@ public abstract class Enemy : Entity, IDamagable, IPausable
 {
     #region Components
     [SerializeField] protected PoolManager _bulletsPool;
+    [SerializeField] protected PoolManager _bloodPool;
     [SerializeField] protected EnemyScriptable _data;
     private Material _mainMat;
     private Rigidbody _rb;
@@ -18,10 +19,28 @@ public abstract class Enemy : Entity, IDamagable, IPausable
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
         _mainMat = GetComponent<MeshRenderer>().materials[0];
+        _transform = GetComponent<Transform>();
+        _rb = GetComponent<Rigidbody>();
 
         _currentHp = _data.MaxHealth;
+    }
+
+    public void TakeDamage(int value, Transform bullet)
+    {
+        if (_isInmune) return;
+
+        GameObject blood = _bloodPool.GetPooledObject();
+        if (!blood) return;
+
+        blood.transform.position = bullet.position;
+        blood.transform.forward = bullet.forward;
+
+        blood.SetActive(true);
+        // en el codigo de las particulas de la sangre
+        // ya esta puesto play on awake y disable en stop action
+
+        TakeDamage(value);
     }
 
     #region Pause

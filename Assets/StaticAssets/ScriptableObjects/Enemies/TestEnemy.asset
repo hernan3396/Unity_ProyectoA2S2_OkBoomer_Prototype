@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1dc6e2283963a4d98066c1a4229f34, type: 3}
   m_Name: TestEnemy
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 30
+  DeathDur: 2
   Invulnerability: 0.1
   Weapon: {fileID: 11400000, guid: c2d8d70bbb6986340b211dd1b0c6b9dc, type: 2}
   Speed: 10

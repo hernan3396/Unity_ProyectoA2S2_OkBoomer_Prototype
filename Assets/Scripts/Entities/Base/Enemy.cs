@@ -1,21 +1,25 @@
 using UnityEngine;
+using DG.Tweening;
 
 public abstract class Enemy : Entity, IDamagable, IPausable
 {
     #region Components
     [SerializeField] protected PoolManager _bulletsPool;
     [SerializeField] protected EnemyScriptable _data;
+    private Material _mainMat;
     private Rigidbody _rb;
     #endregion
 
     #region Pause
-    private bool _isPaused = false;
+    protected bool _isPaused = false;
+    protected bool _isDead = false;
     private Vector3 _lastVel;
     #endregion
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _mainMat = GetComponent<MeshRenderer>().materials[0];
 
         _currentHp = _data.MaxHealth;
     }
@@ -24,6 +28,11 @@ public abstract class Enemy : Entity, IDamagable, IPausable
     public void OnPause(bool value)
     {
         _isPaused = value;
+
+        if (_isPaused)
+            PauseEnemy();
+        else
+            ResumeEnemy();
     }
 
     protected virtual void PauseEnemy()
@@ -47,6 +56,10 @@ public abstract class Enemy : Entity, IDamagable, IPausable
 
     protected override void Death()
     {
-        gameObject.SetActive(false);
+        _isDead = true;
+
+        _mainMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
+        .SetEase(Ease.OutQuint)
+        .OnComplete(() => gameObject.SetActive(false));
     }
 }

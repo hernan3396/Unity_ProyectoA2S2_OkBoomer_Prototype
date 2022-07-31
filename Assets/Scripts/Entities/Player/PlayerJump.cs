@@ -40,6 +40,7 @@ public class PlayerJump : MonoBehaviour, IPausable
             _isJumping = value;
             return;
         }
+
         _isJumping = value && _coyoteTimer <= _data.CoyoteMaxTime;
     }
 

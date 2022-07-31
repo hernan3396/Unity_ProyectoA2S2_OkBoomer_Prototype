@@ -18,5 +18,5 @@ MonoBehaviour:
   Weapon: {fileID: 11400000, guid: c2d8d70bbb6986340b211dd1b0c6b9dc, type: 2}
   Speed: 10
   WalkPointRange: 5
-  VisionRange: 20
-  AttackRange: 12
+  VisionRange: 35
+  AttackRange: 30

@@ -70,8 +70,11 @@ public abstract class Enemy : Entity, IDamagable, IPausable
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _data.VisionRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _data.AttackRange);
     }
 
     protected override void Death()

@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
 {
     public enum AudioList
     {
+        OST,
+        Shoot
     }
 
     [SerializeField] private List<AudioScriptable> _audioList;
@@ -32,8 +34,13 @@ public class AudioManager : MonoBehaviour
         else
             _instance = this;
 
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
+        // esto descomentar luego
+    }
 
+    private void Start()
+    {
+        PlayMusic(AudioList.OST);
     }
 
     public void PlaySound(AudioList audioItem, bool randomSound = false, int index = 0)

@@ -122,13 +122,4 @@ public class RangedEnemy : Enemy
     // {
     //     Destroy(gameObject);
     // }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _data.AttackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _data.VisionRange);
-    }
-
 }

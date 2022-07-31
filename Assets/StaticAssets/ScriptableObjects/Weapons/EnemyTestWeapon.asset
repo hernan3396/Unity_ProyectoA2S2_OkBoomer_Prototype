@@ -17,7 +17,7 @@ MonoBehaviour:
   Accuracy: {x: 10, y: 10}
   Cooldown: 0.5
   Startup: 0
-  Damage: 5
+  Damage: 10
   AmmoType: {fileID: 11400000, guid: 491b7423abe2b35469f2f4bbcbcb5aba, type: 2}
   AmmoSpeed: 60
   MaxAmmo: 0

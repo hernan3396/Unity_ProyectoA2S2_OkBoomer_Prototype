@@ -27,6 +27,12 @@ public class Player : Entity, IPausable
     [SerializeField] private Transform _body;
     #endregion
 
+    #region Melee
+    [Header("Melee")]
+    [SerializeField] private WeaponScriptable _meleeWeapon;
+    [SerializeField] private GameObject _melee;
+    #endregion
+
     #region Weapons
     [Header("Weapons")]
     // si va a variar en play time cambiar esto a una lista
@@ -267,6 +273,16 @@ public class Player : Entity, IPausable
     public GameObject[] Hitboxes
     {
         get { return _hitboxes; }
+    }
+
+    public GameObject Melee
+    {
+        get { return _melee; }
+    }
+
+    public WeaponScriptable MeleeWeapon
+    {
+        get { return _meleeWeapon; }
     }
 
     public Transform[] CameraPositions

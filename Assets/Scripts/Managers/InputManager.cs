@@ -131,6 +131,15 @@ public class InputManager : MonoBehaviour
         EventManager.OnCrouch(Crouch);
     }
     #endregion
+
+    #region MeleeMethods
+    public void OnMelee()
+    {
+        if (!CanMove) return;
+        EventManager.OnMelee();
+    }
+    #endregion
+
     private void OnDestroy()
     {
         EventManager.ResumeMenu -= OnPause;

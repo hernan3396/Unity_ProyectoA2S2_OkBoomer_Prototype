@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 public class PlayerShoot : MonoBehaviour, IPausable
 {
     [SerializeField] private PoolManager[] _bulletsPool;

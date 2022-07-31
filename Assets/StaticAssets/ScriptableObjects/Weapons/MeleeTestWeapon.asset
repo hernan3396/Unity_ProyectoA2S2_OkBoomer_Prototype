@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca58fc39f8ec0e44a9e646653cd571c8, type: 3}
-  m_Name: EnemyTestWeapon
+  m_Name: MeleeTestWeapon
   m_EditorClassIdentifier: 
-  Id: 2
-  Name: Enemy Test Weapon
-  Accuracy: {x: 10, y: 10}
+  Id: 3
+  Name: Melee Test Weapon
+  Accuracy: {x: 0, y: 0}
   Cooldown: 0.5
   Startup: 0
-  Damage: 5
-  AmmoType: {fileID: 11400000, guid: 491b7423abe2b35469f2f4bbcbcb5aba, type: 2}
-  AmmoSpeed: 60
+  Damage: 10
+  AmmoType: {fileID: 0}
+  AmmoSpeed: 0
   MaxAmmo: 0
   RecoilForce: 0
   RecoilTime: 0

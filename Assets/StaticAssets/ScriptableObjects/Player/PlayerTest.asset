@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7259c029f640c894a8fe0fc12910b37a, type: 3}
   m_Name: PlayerTest
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  MaxHealth: 100
   Invulnerability: 1
   CrouchTimer: 1
   CrouchVel: 5

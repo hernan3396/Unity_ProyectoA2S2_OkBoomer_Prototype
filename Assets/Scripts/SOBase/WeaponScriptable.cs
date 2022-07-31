@@ -8,6 +8,8 @@ public class WeaponScriptable : ScriptableObject
 
     #region Stats
     [Header("Stats")]
+    // mientras mas cercano a (0,0) mas preciso
+    public Vector2 Accuracy;
     public float Cooldown;
     public float Startup;
     public int Damage;

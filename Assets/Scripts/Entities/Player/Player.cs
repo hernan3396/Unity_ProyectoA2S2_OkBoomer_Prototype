@@ -11,6 +11,7 @@ public class Player : Entity, IPausable
     #region Components
     [Header("Components")]
     [SerializeField] private PlayerScriptable _data;
+    [SerializeField] private PhysicMaterial _noFrictionMat;
     private Rigidbody _rb;
     #endregion
 
@@ -24,6 +25,12 @@ public class Player : Entity, IPausable
     [Header("Body Parts")]
     [SerializeField] private Transform _fpCamera;
     [SerializeField] private Transform _body;
+    #endregion
+
+    #region Melee
+    [Header("Melee")]
+    [SerializeField] private WeaponScriptable _meleeWeapon;
+    [SerializeField] private GameObject _melee;
     #endregion
 
     #region Weapons
@@ -268,9 +275,24 @@ public class Player : Entity, IPausable
         get { return _hitboxes; }
     }
 
+    public GameObject Melee
+    {
+        get { return _melee; }
+    }
+
+    public WeaponScriptable MeleeWeapon
+    {
+        get { return _meleeWeapon; }
+    }
+
     public Transform[] CameraPositions
     {
         get { return _cameraPositions; }
+    }
+
+    public PhysicMaterial NoFrictionMat
+    {
+        get { return _noFrictionMat; }
     }
     #endregion
 }

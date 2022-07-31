@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class PlayerRunState : PlayerBaseState
 {
+    private Player _player;
     private PlayerMovement _playerMovement;
     private PlayerCrouch _playerCrouch;
     private PlayerJump _playerJump;
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
-        if (_playerMovement == null)
+        if (_player == null)
         {
-            _playerCrouch = stateManager.Player.PlayerCrouch;
-            _playerMovement = stateManager.Player.PlayerMov;
-            _playerJump = stateManager.Player.PlayerJump;
+            _player = stateManager.Player;
+            _playerCrouch = _player.PlayerCrouch;
+            _playerMovement = _player.PlayerMov;
+            _playerJump = _player.PlayerJump;
         }
     }
 
@@ -30,7 +32,7 @@ public class PlayerRunState : PlayerBaseState
             return;
         }
 
-        if (_playerMovement.IsMoving && _playerCrouch.Crouching)
+        if (_player.RB.velocity.magnitude > 1 && _playerCrouch.Crouching)
         {
             stateManager.SwitchState(PlayerStateManager.PlayerState.Crouch);
             return;

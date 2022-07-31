@@ -33,6 +33,9 @@ public class RangedEnemy : Enemy
 
     private void Update()
     {
+        if (_isDead) return;
+        if (_isPaused) return;
+
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, _data.VisionRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, _data.AttackRange, whatIsPlayer);
@@ -92,7 +95,7 @@ public class RangedEnemy : Enemy
             {
                 bullet.SetData(_data.Weapon.Damage, _data.Weapon.AmmoSpeed, _data.Weapon.AmmoType);
                 newBullet.SetActive(true);
-                bullet.Shoot();
+                bullet.Shoot(_data.Weapon.Accuracy.x, _data.Weapon.Accuracy.y);
                 alreadyAttacked = true;
             }
 

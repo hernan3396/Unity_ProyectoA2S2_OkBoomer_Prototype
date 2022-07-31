@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyScriptable : ScriptableObject
 {
     public int MaxHealth;
+    public float DeathDur;
     public float Invulnerability;
     public WeaponScriptable Weapon;
 

@@ -42,5 +42,8 @@ public static class EventManager
 
     public static event UnityAction<bool> Crouch;
     public static void OnCrouch(bool crouch) => Crouch?.Invoke(crouch);
+
+    public static event UnityAction Melee;
+    public static void OnMelee() => Melee?.Invoke();
     #endregion
 }

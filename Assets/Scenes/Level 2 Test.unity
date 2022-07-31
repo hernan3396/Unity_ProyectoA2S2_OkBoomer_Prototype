@@ -1271,8 +1271,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 60d62a09d9683f941a68fe66f5b97383, type: 2}
+  _noFrictionMat: {fileID: 13400000, guid: b174df777fb26a44c8338b7b107883ae, type: 2}
   _fpCamera: {fileID: 398613856}
   _body: {fileID: 121915976}
+  _meleeWeapon: {fileID: 0}
+  _melee: {fileID: 0}
   _weapons:
   - {fileID: 11400000, guid: fd0bafd6b6042f44d9f00655af723f32, type: 2}
   - {fileID: 11400000, guid: 95c67b0bfe3ce8b4b8c498a0a7fb34f6, type: 2}
@@ -3550,6 +3553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 375104436}
   player: {fileID: 380145674}
@@ -3599,7 +3603,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4032,6 +4036,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 974850362}
   - {fileID: 1150514359}
   m_Father: {fileID: 121915976}
   m_RootOrder: 2
@@ -5531,6 +5536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 535643248}
   player: {fileID: 380145674}
@@ -5580,7 +5586,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6753,6 +6759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 708923930}
   player: {fileID: 380145674}
@@ -6802,7 +6809,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7621,6 +7628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 777872827}
   player: {fileID: 380145674}
@@ -7670,7 +7678,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9304,6 +9312,116 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974849758}
   m_CullTransparentMesh: 1
+--- !u!1 &974850361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974850362}
+  - component: {fileID: 974850366}
+  - component: {fileID: 974850365}
+  - component: {fileID: 974850364}
+  - component: {fileID: 974850363}
+  m_Layer: 0
+  m_Name: MeleeHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &974850362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974850361}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.567, z: 1.383}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 398613856}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974850363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974850361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2438deb94d454f45b33ea3c3479fbe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &974850364
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974850361}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &974850365
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974850361}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fbd71592fedc5f94e980e35bf521eb21, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &974850366
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974850361}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &979839298
 GameObject:
   m_ObjectHideFlags: 0
@@ -10714,7 +10832,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 398613856}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1150514361
 MeshRenderer:
@@ -11429,6 +11547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 1224601872}
   player: {fileID: 380145674}
@@ -12021,6 +12140,7 @@ Transform:
   - {fileID: 1588689988}
   - {fileID: 243783224}
   - {fileID: 507484370}
+  - {fileID: 1401480700}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12454,6 +12574,54 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1401480699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1401480700}
+  - component: {fileID: 1401480701}
+  m_Layer: 0
+  m_Name: BloodPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1401480700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401480699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1309396392}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1401480701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401480699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a11f0be2c51a34187fd4d3dc539ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectsPool: []
+  _objectPrefab: {fileID: 3918108441266325066, guid: dd8f91f893bbe6e499ee4a2fe7556e75,
+    type: 3}
+  _objectsAmount: 10
 --- !u!1 &1431785010
 GameObject:
   m_ObjectHideFlags: 0
@@ -12526,6 +12694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 1431785012}
   player: {fileID: 380145674}
@@ -12575,7 +12744,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12871,6 +13040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 1486772521}
   player: {fileID: 380145674}
@@ -12920,7 +13090,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14151,6 +14321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 1610891331}
   player: {fileID: 380145674}
@@ -14200,7 +14371,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15053,6 +15224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 1774065322}
   player: {fileID: 380145674}
@@ -15102,7 +15274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16456,6 +16628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 507484371}
+  _bloodPool: {fileID: 1401480701}
   _data: {fileID: 11400000, guid: a131028ee4f76364987f1f3a9f698e3d, type: 2}
   agent: {fileID: 1981318590}
   player: {fileID: 380145674}
@@ -16505,7 +16678,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bdf30b2f4328d449969811bc9ae0a85, type: 2}
+  - {fileID: 2100000, guid: 4c4f7f3c7f0166a4bb18c361ec46a30e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

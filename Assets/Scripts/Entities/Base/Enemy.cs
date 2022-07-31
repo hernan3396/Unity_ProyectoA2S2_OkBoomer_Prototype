@@ -29,6 +29,7 @@ public abstract class Enemy : Entity, IDamagable, IPausable
     public void TakeDamage(int value, Transform bullet)
     {
         if (_isInmune) return;
+        if (_isDead) return;
 
         GameObject blood = _bloodPool.GetPooledObject();
         if (!blood) return;

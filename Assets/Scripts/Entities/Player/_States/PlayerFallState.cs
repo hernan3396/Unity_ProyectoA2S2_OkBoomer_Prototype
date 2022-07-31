@@ -5,6 +5,7 @@ public class PlayerFallState : PlayerBaseState
     private Player _player;
     private PlayerJump _playerJump;
     private PlayerMovement _playerMov;
+    private CapsuleCollider _collider;
 
     #region GravityChange
     private float _gravityTimer;
@@ -18,6 +19,7 @@ public class PlayerFallState : PlayerBaseState
             _player = stateManager.Player;
             _playerJump = _player.PlayerJump;
             _playerMov = _player.PlayerMov;
+            _collider = _player.Hitboxes[0].GetComponent<CapsuleCollider>();
         }
 
         if (_playerJump.IsJumping)
@@ -26,6 +28,8 @@ public class PlayerFallState : PlayerBaseState
             _gravityTimer = 0;
             _player.ChangeGravity(true);
         }
+
+        _collider.material = _player.NoFrictionMat;
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
@@ -58,5 +62,10 @@ public class PlayerFallState : PlayerBaseState
     public override void FixedUpdateState(PlayerStateManager stateManager)
     {
         _playerMov.ApplyMovement();
+    }
+
+    public override void OnExitState(PlayerStateManager stateManager)
+    {
+        _collider.material = null;
     }
 }

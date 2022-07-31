@@ -5,6 +5,7 @@ public class PlayerJumpState : PlayerBaseState
     private Player _player;
     private PlayerMovement _playerMovement;
     private PlayerJump _playerJump;
+    private CapsuleCollider _collider;
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
@@ -13,9 +14,11 @@ public class PlayerJumpState : PlayerBaseState
             _player = stateManager.Player;
             _playerMovement = _player.PlayerMov;
             _playerJump = _player.PlayerJump;
+            _collider = _player.Hitboxes[0].GetComponent<CapsuleCollider>();
         }
 
         _playerJump.Jump();
+        _collider.material = _player.NoFrictionMat;
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
@@ -31,5 +34,10 @@ public class PlayerJumpState : PlayerBaseState
     public override void FixedUpdateState(PlayerStateManager stateManager)
     {
         _playerMovement.ApplyMovement();
+    }
+
+    public override void OnExitState(PlayerStateManager stateManager)
+    {
+        _collider.material = null;
     }
 }

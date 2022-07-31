@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 60d62a09d9683f941a68fe66f5b97383, type: 2}
+  _noFrictionMat: {fileID: 13400000, guid: b174df777fb26a44c8338b7b107883ae, type: 2}
   _fpCamera: {fileID: 398613856}
   _body: {fileID: 121915976}
   _weapons:

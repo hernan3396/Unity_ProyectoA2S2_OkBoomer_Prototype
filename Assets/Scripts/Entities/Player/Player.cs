@@ -11,6 +11,7 @@ public class Player : Entity, IPausable
     #region Components
     [Header("Components")]
     [SerializeField] private PlayerScriptable _data;
+    [SerializeField] private PhysicMaterial _noFrictionMat;
     private Rigidbody _rb;
     #endregion
 
@@ -271,6 +272,11 @@ public class Player : Entity, IPausable
     public Transform[] CameraPositions
     {
         get { return _cameraPositions; }
+    }
+
+    public PhysicMaterial NoFrictionMat
+    {
+        get { return _noFrictionMat; }
     }
     #endregion
 }

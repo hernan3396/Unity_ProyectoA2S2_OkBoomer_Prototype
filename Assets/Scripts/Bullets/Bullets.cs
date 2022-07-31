@@ -40,9 +40,17 @@ public abstract class Bullets : MonoBehaviour, IShootable, IPausable
         EventManager.Pause += OnPause;
     }
 
-    public virtual void Shoot()
+    public virtual void Shoot(float hAcc, float vAcc)
     {
-        _rb.AddForce(transform.forward * _speed, ForceMode.Impulse);
+        // los dividimos entre 100 porque asi quedan numeros mas
+        // lindos en el scriptable del arma
+        hAcc *= 0.01f;
+        vAcc *= 0.01f;
+
+        Vector3 dir = new Vector3(Random.Range(-hAcc, hAcc), Random.Range(-vAcc, vAcc), 0);
+        dir = dir + _transform.forward;
+
+        _rb.AddForce(dir * _speed, ForceMode.Impulse);
     }
 
     public void SetData(int damage, int speed, BulletScriptable data)

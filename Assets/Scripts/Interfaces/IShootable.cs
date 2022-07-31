@@ -1,4 +1,4 @@
 public interface IShootable
 {
-    void Shoot();
+    void Shoot(float hAcc, float vAcc);
 }

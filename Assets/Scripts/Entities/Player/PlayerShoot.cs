@@ -60,7 +60,7 @@ public class PlayerShoot : MonoBehaviour, IPausable
         {
             bullet.SetData(_weapon.Damage, _weapon.AmmoSpeed, _weapon.AmmoType);
             newBullet.SetActive(true);
-            bullet.Shoot();
+            bullet.Shoot(_weapon.Accuracy.x, _weapon.Accuracy.y);
         }
     }
 

@@ -95,7 +95,7 @@ public class RangedEnemy : Enemy
             {
                 bullet.SetData(_data.Weapon.Damage, _data.Weapon.AmmoSpeed, _data.Weapon.AmmoType);
                 newBullet.SetActive(true);
-                bullet.Shoot();
+                bullet.Shoot(_data.Weapon.Accuracy.x, _data.Weapon.Accuracy.y);
                 alreadyAttacked = true;
             }
 

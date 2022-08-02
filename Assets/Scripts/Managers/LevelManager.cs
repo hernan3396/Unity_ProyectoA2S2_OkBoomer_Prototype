@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
 
     public void OnNextLevel(string scene)
     {
+        EventManager.OnLevelFinished();
+
         _transitionPanel.gameObject.SetActive(true);
         _transitionPanel.DOScaleX(1.05f, _fadeDur)
         .SetEase(Ease.OutExpo)

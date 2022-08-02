@@ -7,7 +7,8 @@ public class UIManager : MonoBehaviour
     public enum Element
     {
         Hp,
-        Bullets
+        Bullets,
+        Timer
     }
 
     #region UiElements
@@ -19,14 +20,19 @@ public class UIManager : MonoBehaviour
         EventManager.UpdateUI += UpdateUI;
         EventManager.GameStart += OnGameStart;
         EventManager.GameOver += OnGameOver;
+        EventManager.LevelFinished += OnLevelFinished;
     }
 
     private void OnGameStart()
     {
         foreach (UiElement element in _uiElements)
-        {
             element.Element.gameObject.SetActive(true);
-        }
+    }
+
+    private void OnLevelFinished()
+    {
+        foreach (UiElement element in _uiElements)
+            element.Element.gameObject.SetActive(false);
     }
 
     private void OnGameOver()
@@ -42,11 +48,17 @@ public class UIManager : MonoBehaviour
         _uiElements[(int)element].UpdateElement(value);
     }
 
+    public void UpdateUI(Element element, string value)
+    {
+        _uiElements[(int)element].UpdateElement(value);
+    }
+
     private void OnDestroy()
     {
         EventManager.UpdateUI -= UpdateUI;
         EventManager.GameStart -= OnGameStart;
         EventManager.GameOver -= OnGameOver;
+        EventManager.LevelFinished -= OnLevelFinished;
     }
 }
 
@@ -58,6 +70,11 @@ public class UiElement
 
     public void UpdateElement(int value)
     {
-        Element.text = $"{BaseText} {value}";
+        Element.text = $"{BaseText}{value}";
+    }
+
+    public void UpdateElement(string value)
+    {
+        Element.text = value;
     }
 }

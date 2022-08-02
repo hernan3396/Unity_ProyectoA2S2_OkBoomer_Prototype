@@ -4,9 +4,7 @@ public abstract class Bullets : MonoBehaviour, IShootable, IPausable
 {
     #region Components
     protected TrailRenderer _trailRenderer;
-    protected MeshFilter _meshFilter;
     protected Transform _transform;
-    protected BoxCollider _boxCol;
     protected Rigidbody _rb;
     #endregion
 
@@ -26,10 +24,6 @@ public abstract class Bullets : MonoBehaviour, IShootable, IPausable
 
     private void Awake()
     {
-        // componentes de modelo
-        _meshFilter = GetComponent<MeshFilter>();
-        _boxCol = GetComponent<BoxCollider>();
-
         _trailRenderer = GetComponent<TrailRenderer>();
         _transform = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody>();

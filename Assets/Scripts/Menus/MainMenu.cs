@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -22,6 +23,14 @@ public class MainMenu : MonoBehaviour
     private CanvasGroup _currentCG;
     #endregion
 
+    #region Timers
+    [Header("timers")]
+    // de momento es solo 1, luego divertirse con
+    // haciendo la logica para los demas, aunque no deberia ser muy dificil
+    [SerializeField] private string _timerPrefs;
+    [SerializeField] private TMP_Text _timer;
+    #endregion
+
     private void Awake()
     {
         SelectNewButton(_selectedBtn);
@@ -35,6 +44,7 @@ public class MainMenu : MonoBehaviour
         FadeIn(_currentCG);
 
         RotateCamera();
+        UpdateTimer();
     }
 
     private void FadeIn(CanvasGroup cg)
@@ -77,5 +87,11 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    private void UpdateTimer()
+    {
+        // esta parte deberia venir desde un "saves manager"
+        _timer.text = PlayerPrefs.GetString(_timerPrefs);
     }
 }

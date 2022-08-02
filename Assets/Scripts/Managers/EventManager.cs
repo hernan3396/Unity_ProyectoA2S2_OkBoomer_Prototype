@@ -12,6 +12,9 @@ public static class EventManager
     public static event UnityAction<string> GoToNextLevel;
     public static void OnGoToNextLevel(string nextLevel) => GoToNextLevel?.Invoke(nextLevel);
 
+    public static event UnityAction LevelFinished;
+    public static void OnLevelFinished() => LevelFinished?.Invoke();
+
     public static event UnityAction GameStart;
     public static void OnGameStart() => GameStart?.Invoke();
 
@@ -22,7 +25,7 @@ public static class EventManager
     public static void OnGameOver() => GameOver?.Invoke();
 
     public static event UnityAction<UIManager.Element, int> UpdateUI;
-    public static void OnUpdateUI(UIManager.Element element, int value) => UpdateUI.Invoke(element, value);
+    public static void OnUpdateUI(UIManager.Element element, int value) => UpdateUI?.Invoke(element, value);
 
     #region PlayerInputs
     public static event UnityAction<Vector2> Move;
@@ -38,7 +41,7 @@ public static class EventManager
     public static void OnShoot(bool shoot) => Shoot?.Invoke(shoot);
 
     public static event UnityAction<bool> SpecialShoot;
-    public static void OnSpecialShoot(bool specialShoot) => SpecialShoot.Invoke(specialShoot);
+    public static void OnSpecialShoot(bool specialShoot) => SpecialShoot?.Invoke(specialShoot);
 
     public static event UnityAction<int> ChangeWeapon;
     public static void OnChangeWeapon(int side) => ChangeWeapon?.Invoke(side);

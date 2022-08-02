@@ -12,6 +12,8 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
         Cooldown
     }
 
+    // para esto usar un state machine como la del player
+    // asi no se hace una ensalada de cosas distintas
     #region VFX
     [Header("VFX")]
     // estan para el prototipo, luego hay que mejorar esto

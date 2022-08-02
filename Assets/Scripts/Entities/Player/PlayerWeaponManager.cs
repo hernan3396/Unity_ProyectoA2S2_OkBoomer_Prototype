@@ -10,6 +10,8 @@ public class PlayerWeaponManager : MonoBehaviour
     private void Start()
     {
         _player = GetComponent<Player>();
+        _player.ChangeWeapons(_player.CurrentWeapon);
+        _weaponText.text = _player.Weapons[_player.CurrentWeapon].Name;
 
         EventManager.ChangeWeapon += ChangeWeapon;
     }

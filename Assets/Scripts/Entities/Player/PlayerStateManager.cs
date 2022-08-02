@@ -28,6 +28,10 @@ public class PlayerStateManager : MonoBehaviour
     {
         _currentState = _states[(int)PlayerState.Idle];
         _currentState.OnEnterState(this);
+
+#if UNITY_EDITOR
+        _stateText.gameObject.SetActive(true);
+#endif
     }
 
     public virtual void Update()

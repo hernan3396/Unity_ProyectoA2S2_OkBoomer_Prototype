@@ -37,6 +37,9 @@ public static class EventManager
     public static event UnityAction<bool> Shoot;
     public static void OnShoot(bool shoot) => Shoot?.Invoke(shoot);
 
+    public static event UnityAction<bool> SpecialShoot;
+    public static void OnSpecialShoot(bool specialShoot) => SpecialShoot.Invoke(specialShoot);
+
     public static event UnityAction<int> ChangeWeapon;
     public static void OnChangeWeapon(int side) => ChangeWeapon?.Invoke(side);
 

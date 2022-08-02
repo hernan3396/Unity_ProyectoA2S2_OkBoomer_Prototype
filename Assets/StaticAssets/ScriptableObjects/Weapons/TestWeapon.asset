@@ -18,6 +18,9 @@ MonoBehaviour:
   Cooldown: 0.2
   Startup: 0
   Damage: 5
+  SpecialStartup: 3
+  SpecialTime: 3
+  SpecialCooldown: 5
   AmmoType: {fileID: 11400000, guid: 491b7423abe2b35469f2f4bbcbcb5aba, type: 2}
   AmmoSpeed: 100
   MaxAmmo: 200

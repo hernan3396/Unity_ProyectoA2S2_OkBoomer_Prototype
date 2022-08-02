@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour
     #region Shooting
     [Header("Shooting")]
     public bool Shoot = false;
+    public bool SpecialShoot = false;
     #endregion
 
     #region Pause
@@ -95,6 +96,14 @@ public class InputManager : MonoBehaviour
 
         Shoot = value.isPressed; // de momento no se usa para nada
         EventManager.OnShoot(Shoot);
+    }
+
+    public void OnSpecialShoot(InputValue value)
+    {
+        if (!CanLook) return;
+
+        SpecialShoot = value.isPressed;
+        EventManager.OnSpecialShoot(SpecialShoot);
     }
     #endregion
 

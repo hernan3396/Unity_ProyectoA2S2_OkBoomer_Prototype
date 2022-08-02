@@ -15,6 +15,13 @@ public class WeaponScriptable : ScriptableObject
     public int Damage;
     #endregion
 
+    #region SpecialShoot
+    [Header("Special Shoot")]
+    public float SpecialStartup;
+    public float SpecialTime;
+    public float SpecialCooldown;
+    #endregion
+
     #region Ammo
     [Header("Ammo")]
     public BulletScriptable AmmoType;

@@ -15880,7 +15880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1715385087
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17033,6 +17033,7 @@ MonoBehaviour:
   Look: {x: 0, y: 0}
   Jump: 0
   Shoot: 0
+  SpecialShoot: 0
   Pause: 0
   Crouch: 0
 --- !u!1 &1915045922

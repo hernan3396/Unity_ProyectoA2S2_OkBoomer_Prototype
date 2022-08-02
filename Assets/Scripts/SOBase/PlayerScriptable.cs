@@ -26,5 +26,7 @@ public class PlayerScriptable : ScriptableObject
     [Header("Look")]
     public float MouseSensitivity;
     public Vector2 LookLimits;
+    public float SwayMultiplier;
+    public float SwaySmoothness;
     #endregion
 }

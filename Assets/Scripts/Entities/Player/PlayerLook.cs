@@ -35,6 +35,19 @@ public class PlayerLook : MonoBehaviour
 
         _player.FpCamera.localRotation = headRotation;
         _player.Body.localRotation = bodyRotation;
+
+        // sway
+        // no queda super lindo aca pero de la forma que esta hecho el proyecto es lo mejor que se me ocurrio
+        Quaternion xRotation = Quaternion.AngleAxis(-look.y * _player.Data.SwayMultiplier, Vector3.right);
+        Quaternion yRotation = Quaternion.AngleAxis(look.x * _player.Data.SwayMultiplier, Vector3.up);
+        Quaternion targetRotation = xRotation * yRotation;
+
+        _player.WeaponHolder.localRotation = Quaternion.Slerp(_player.WeaponHolder.localRotation, targetRotation, _player.Data.SwaySmoothness * Time.deltaTime);
+    }
+
+    private void SwayWeapon()
+    {
+        // Vector2 newRotations = 
     }
 
     private void OnDestroy()

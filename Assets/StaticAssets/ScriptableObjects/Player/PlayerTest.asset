@@ -24,3 +24,5 @@ MonoBehaviour:
   Gravity: 10
   MouseSensitivity: 1
   LookLimits: {x: -90, y: 80}
+  SwayMultiplier: 2
+  SwaySmoothness: 8

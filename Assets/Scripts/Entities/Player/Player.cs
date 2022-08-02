@@ -23,6 +23,7 @@ public class Player : Entity, IPausable
 
     #region BodyParts
     [Header("Body Parts")]
+    [SerializeField] private Transform _weaponHolder;
     [SerializeField] private Transform _fpCamera;
     [SerializeField] private Transform _body;
     #endregion
@@ -238,6 +239,11 @@ public class Player : Entity, IPausable
     public Transform Body
     {
         get { return _body; }
+    }
+
+    public Transform WeaponHolder
+    {
+        get { return _weaponHolder; }
     }
 
     public WeaponScriptable[] Weapons

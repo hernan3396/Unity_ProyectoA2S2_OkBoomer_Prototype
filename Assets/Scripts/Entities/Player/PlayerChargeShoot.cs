@@ -12,7 +12,17 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
         Cooldown
     }
 
+    #region VFX
+    [Header("VFX")]
+    // estan para el prototipo, luego hay que mejorar esto
+    [SerializeField] private GameObject _chargingParticles;
+    [SerializeField] private GameObject _cdParticles;
+    [SerializeField] private GameObject _laser;
+    [SerializeField] private LineRenderer _laserLR;
+    #endregion
+
     #region Components
+    [Header("Components")]
     [SerializeField] private TMP_Text _stateText;
     private WeaponScriptable _weapon;
     private Player _player;
@@ -84,6 +94,7 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
             _shootingTime = 0;
             _cooldown = 0;
 
+            _chargingParticles.SetActive(true);
             ChangeState(States.Charging);
         }
     }
@@ -94,12 +105,16 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
 
         if (!_isShooting || ChangedWeapon())
         {
+            _chargingParticles.SetActive(false);
+            _cdParticles.SetActive(true);
             ChangeState(States.Cooldown);
             return;
         }
 
         if (_chargingTime >= _weapon.SpecialStartup)
         {
+            _chargingParticles.SetActive(false);
+            _laser.SetActive(true);
             ChangeState(States.Shooting);
             return;
         }
@@ -107,16 +122,21 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
 
     private void Shooting()
     {
+        TempShoot();
         _shootingTime += Time.deltaTime;
 
         if (!_isShooting || ChangedWeapon())
         {
+            _laser.SetActive(false);
+            _cdParticles.SetActive(true);
             ChangeState(States.Cooldown);
             return;
         }
 
         if (_shootingTime >= _weapon.SpecialTime)
         {
+            _laser.SetActive(false);
+            _cdParticles.SetActive(true);
             ChangeState(States.Cooldown);
             return;
         }
@@ -127,7 +147,10 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
         _cooldown += Time.deltaTime;
 
         if (_cooldown >= _weapon.SpecialCooldown)
+        {
+            _cdParticles.SetActive(false);
             ChangeState(States.Idle);
+        }
     }
 
     private bool ChangedWeapon()
@@ -139,6 +162,31 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
     {
         _currentState = newState;
         _stateText.text = "State: " + _currentState.ToString();
+    }
+
+    private void TempShoot()
+    {
+        // un disparo temporal para que al menos haga daño
+        // tambien hay unas cuentas medias raras porque sino el vfx se veia raro
+        // esto obviamente queda cambiado luego, pero para ahora es mas que suficiente
+        if (Physics.Raycast(_laser.transform.position + _laser.transform.forward, _laser.transform.forward, out RaycastHit hit, Mathf.Infinity))
+        {
+            _laserLR.SetPosition(0, _laser.transform.position);
+            _laserLR.SetPosition(1, hit.point);
+
+            if (hit.collider.TryGetComponent(out Enemy enemy))
+                enemy.TakeDamage(2, hit.transform);
+        }
+        else
+        {
+            _laserLR.SetPosition(0, _laser.transform.position);
+            _laserLR.SetPosition(1, _laser.transform.position + _laser.transform.forward * 20);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(_laser.transform.position + _laser.transform.forward, _laser.transform.forward * 10, Color.green);
     }
 
     public void OnPause(bool value)

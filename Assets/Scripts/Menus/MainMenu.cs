@@ -92,6 +92,7 @@ public class MainMenu : MonoBehaviour
     private void UpdateTimer()
     {
         // esta parte deberia venir desde un "saves manager"
-        _timer.text = PlayerPrefs.GetString(_timerPrefs);
+        if (PlayerPrefs.HasKey(_timerPrefs))
+            _timer.text = PlayerPrefs.GetString(_timerPrefs);
     }
 }

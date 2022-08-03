@@ -40,7 +40,7 @@ public class TimeManager : MonoBehaviour, IPausable
         msec = (int)((time - (int)time) * 100);
         sec = (int)(time % 60);
         min = (int)(time / 60 % 60);
-        totalTime = string.Format("{0:00}:{1:00}", min, sec);
+        totalTime = string.Format("{0:00}:{1:00}:{2:00}", min, sec, msec);
 
         _uiManager.UpdateUI(UIManager.Element.Timer, totalTime);
     }

@@ -6,7 +6,7 @@ public class TimeManager : MonoBehaviour, IPausable
     private UIManager _uiManager;
     #endregion
 
-    [SerializeField] private string _prefsName = "Hiperwave_Lv1Timer";
+    [SerializeField] private string _prefsName = "Hyperwave_Lv1Timer";
 
     private bool _isPaused = false;
     private float time;
@@ -47,9 +47,22 @@ public class TimeManager : MonoBehaviour, IPausable
 
     private void OnLevelFinished()
     {
-        // esta parte deberia estar en su script especifico
-        PlayerPrefs.SetString(_prefsName, totalTime);
         _isPaused = true;
+
+        // esta parte deberia estar en su script especifico
+        // al pasar al alpha ajustar esto entre otras cosas
+        if (PlayerPrefs.HasKey("Hyperwave_Lv1Timer_float"))
+        {
+            if (PlayerPrefs.GetFloat("Hyperwave_Lv1Timer_float") >= time)
+            {
+                PlayerPrefs.SetFloat("Hyperwave_Lv1Timer_float", time);
+                PlayerPrefs.SetString(_prefsName, totalTime);
+            }
+            return;
+        }
+
+        PlayerPrefs.SetFloat("Hyperwave_Lv1Timer_float", time);
+        PlayerPrefs.SetString(_prefsName, totalTime);
     }
 
     public void OnPause(bool value)

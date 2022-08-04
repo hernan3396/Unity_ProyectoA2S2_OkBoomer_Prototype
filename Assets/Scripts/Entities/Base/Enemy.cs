@@ -7,6 +7,7 @@ public abstract class Enemy : Entity, IDamagable, IPausable
     [SerializeField] protected PoolManager _bulletsPool;
     [SerializeField] protected PoolManager _bloodPool;
     [SerializeField] protected EnemyScriptable _data;
+    private BoxCollider _boxCol;
     private Material _mainMat;
     private Rigidbody _rb;
     #endregion
@@ -21,6 +22,7 @@ public abstract class Enemy : Entity, IDamagable, IPausable
     {
         _mainMat = GetComponent<MeshRenderer>().materials[0];
         _transform = GetComponent<Transform>();
+        _boxCol = GetComponent<BoxCollider>();
         _rb = GetComponent<Rigidbody>();
 
         _currentHp = _data.MaxHealth;
@@ -80,6 +82,7 @@ public abstract class Enemy : Entity, IDamagable, IPausable
     protected override void Death()
     {
         _isDead = true;
+        _boxCol.enabled = false;
 
         _mainMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint)

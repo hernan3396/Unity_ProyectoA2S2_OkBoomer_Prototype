@@ -22,6 +22,7 @@ MonoBehaviour:
   SpecialTime: 3
   SpecialCooldown: 5
   AmmoType: {fileID: 11400000, guid: 32d6528a3bdbcac4094c72b17fc65e95, type: 2}
+  MaxBounces: 1
   AmmoSpeed: 150
   MaxAmmo: 200
   RecoilForce: 0

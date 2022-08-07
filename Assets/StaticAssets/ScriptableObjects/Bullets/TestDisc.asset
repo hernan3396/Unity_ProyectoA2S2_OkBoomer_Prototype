@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8e6d345b1d8bf408089ae271fd59b6, type: 3}
   m_Name: TestDisc
   m_EditorClassIdentifier: 
-  Duration: 1
+  Duration: 2
   AmmoType: 1

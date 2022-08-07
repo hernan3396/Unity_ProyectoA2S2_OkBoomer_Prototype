@@ -18,7 +18,11 @@ MonoBehaviour:
   Cooldown: 0.5
   Startup: 0
   Damage: 10
+  SpecialStartup: 0
+  SpecialTime: 0
+  SpecialCooldown: 0
   AmmoType: {fileID: 0}
+  MaxBounces: 1
   AmmoSpeed: 0
   MaxAmmo: 0
   RecoilForce: 0

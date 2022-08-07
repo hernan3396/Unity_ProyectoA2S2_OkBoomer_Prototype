@@ -13,11 +13,22 @@ public class ExplosiveBullets : Bullets, IExplosive
             enemy.TakeDamage(_damage);
 
         Explosion();
-        DisableBullet();
+
+        if (_bounces >= 0)
+            Bounce();
+        else
+            DisableBullet();
     }
 
     public void Explosion()
     {
         // Debug.Log("Explosion");
+    }
+
+    private void Bounce()
+    {
+        // _rb.velocity = -_rb.velocity;
+        // _rb.velocity = _rb.velocity * 2;
+        _bulletTimer = 0;
     }
 }

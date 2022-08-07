@@ -11,9 +11,10 @@ public abstract class Bullets : MonoBehaviour, IShootable, IPausable
     #region Data
     protected BulletScriptable _data;
     protected float _bulletTimer;
-    // estos ultimos 2 vienen del arma
+    // estos ultimos 3 vienen del arma
     protected int _damage;
     protected int _speed;
+    protected int _bounces;
     #endregion
 
     #region Pause
@@ -60,6 +61,7 @@ public abstract class Bullets : MonoBehaviour, IShootable, IPausable
         // ajustes de estadisticas
         _damage = damage;
         _speed = speed;
+        // _bounces = 
     }
 
     protected virtual void BulletLifetime()

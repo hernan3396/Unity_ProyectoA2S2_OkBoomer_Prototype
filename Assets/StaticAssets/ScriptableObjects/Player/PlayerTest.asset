@@ -15,14 +15,14 @@ MonoBehaviour:
   MaxHealth: 100
   Invulnerability: 1
   CrouchTimer: 0.6
-  CrouchVel: 5
-  Speed: 20
-  HalfGravityLimit: 0.4
+  CrouchVel: 6
+  Speed: 30
+  HalfGravityLimit: 0.1
   CoyoteMaxTime: 0.20000002
-  JumpStrength: 45
+  JumpStrength: 38
   FallMaxSpeed: -40
-  Gravity: 10
-  MouseSensitivity: 1
+  Gravity: 12
+  MouseSensitivity: 2
   LookLimits: {x: -90, y: 80}
   SwayMultiplier: 2
   SwaySmoothness: 8

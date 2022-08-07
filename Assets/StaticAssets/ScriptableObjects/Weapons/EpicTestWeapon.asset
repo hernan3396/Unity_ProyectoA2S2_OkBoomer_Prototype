@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca58fc39f8ec0e44a9e646653cd571c8, type: 3}
+  m_Name: EpicTestWeapon
+  m_EditorClassIdentifier: 
+  Id: 1
+  Name: "Tron\u2019s ENCOM"
+  Accuracy: {x: 0, y: 0}
+  Cooldown: 1
+  Startup: 0
+  Damage: 5
+  SpecialStartup: 3
+  SpecialTime: 3
+  SpecialCooldown: 5
+  AmmoType: {fileID: 11400000, guid: 6a7eb15c899fae64181d4112d5d8c882, type: 2}
+  MaxBounces: 10
+  AmmoSpeed: 200
+  MaxAmmo: 20
+  RecoilForce: 0
+  RecoilTime: 0

@@ -934,7 +934,7 @@ MonoBehaviour:
   _melee: {fileID: 1318124353}
   _weapons:
   - {fileID: 11400000, guid: fd0bafd6b6042f44d9f00655af723f32, type: 2}
-  - {fileID: 11400000, guid: 95c67b0bfe3ce8b4b8c498a0a7fb34f6, type: 2}
+  - {fileID: 11400000, guid: 53bb0df17361e0a49bbe9d209ae5a991, type: 2}
   _shootPos: {fileID: 1150514359}
   _grdDist: 0.55
   _grdLayer:
@@ -1035,6 +1035,7 @@ MonoBehaviour:
   _bulletsPool:
   - {fileID: 1588689989}
   - {fileID: 243783225}
+  - {fileID: 1678692660}
 --- !u!114 &121915988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17232,6 +17233,7 @@ Transform:
   - {fileID: 243783224}
   - {fileID: 507484370}
   - {fileID: 2039111891}
+  - {fileID: 1678692659}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18976,6 +18978,54 @@ Transform:
   m_Father: {fileID: 1129270725}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1678692658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678692659}
+  - component: {fileID: 1678692660}
+  m_Layer: 0
+  m_Name: MetralletaPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1678692659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678692658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1309396392}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1678692660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678692658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a11f0be2c51a34187fd4d3dc539ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectsPool: []
+  _objectPrefab: {fileID: 2655278983746728008, guid: c46c380fc6f4b8c42aa2e1d4b8be7aa2,
+    type: 3}
+  _objectsAmount: 40
 --- !u!1 &1715385086
 GameObject:
   m_ObjectHideFlags: 0

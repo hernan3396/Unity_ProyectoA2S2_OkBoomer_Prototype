@@ -124,21 +124,47 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
 
     private void Shooting()
     {
-        TempShoot();
+        if (_player.SelectedWeapon.Id == 0)
+            TempShoot();
+
+        switch (_player.SelectedWeapon.Id)
+        {
+            case 0:
+                TempShoot();
+                break;
+
+            case 4:
+                SlowDownTime();
+                break;
+        }
+
         _shootingTime += Time.deltaTime;
 
         if (!_isShooting || ChangedWeapon())
         {
+            // laser
             _laser.SetActive(false);
             _cdParticles.SetActive(true);
+
+            // Slow down time
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+
             ChangeState(States.Cooldown);
             return;
         }
 
         if (_shootingTime >= _weapon.SpecialTime)
         {
+            // laser
             _laser.SetActive(false);
             _cdParticles.SetActive(true);
+
+            // Slow down time
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
             ChangeState(States.Cooldown);
             return;
         }
@@ -184,6 +210,12 @@ public class PlayerChargeShoot : MonoBehaviour, IPausable
             _laserLR.SetPosition(0, _laser.transform.position);
             _laserLR.SetPosition(1, _laser.transform.position + _laser.transform.forward * 20);
         }
+    }
+
+    private void SlowDownTime()
+    {
+        Time.timeScale = 0.5f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 
     private void OnDrawGizmos()

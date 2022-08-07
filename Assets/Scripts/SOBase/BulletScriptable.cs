@@ -6,7 +6,8 @@ public class BulletScriptable : ScriptableObject
     public enum BulletType
     {
         SimpleBullet,
-        ExplosiveBullet
+        ExplosiveBullet,
+        MetralletaBullet
     }
 
     public float Duration;

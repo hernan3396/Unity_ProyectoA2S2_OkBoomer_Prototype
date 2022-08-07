@@ -41,7 +41,9 @@ public abstract class Bullets : MonoBehaviour, IShootable, IPausable
         hAcc *= 0.01f;
         vAcc *= 0.01f;
 
-        Vector3 dir = new Vector3(Random.Range(-hAcc, hAcc), Random.Range(-vAcc, vAcc), 0);
+        // aca falta normalizar algun valor
+
+        Vector3 dir = new Vector3(Random.Range(-hAcc, hAcc), Random.Range(-vAcc, vAcc), Random.Range(-hAcc, hAcc));
         dir = dir + _transform.forward;
 
         _rb.AddForce(dir * _speed, ForceMode.Impulse);

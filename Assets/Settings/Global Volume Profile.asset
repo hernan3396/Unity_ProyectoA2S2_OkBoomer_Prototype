@@ -16,6 +16,53 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 1
     m_Value: 0.1
+--- !u!114 &-3090781481742308853
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea62842ddb6960488930897ba9ce398, type: 3}
+  m_Name: Dithering
+  m_EditorClassIdentifier: 
+  active: 1
+  patternIndex:
+    m_OverrideState: 1
+    m_Value: 1
+  ditherThreshold:
+    m_OverrideState: 1
+    m_Value: 5
+  ditherStrength:
+    m_OverrideState: 1
+    m_Value: 0
+  ditherScale:
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &-1014438481679131584
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a1bd58dd7548198609eabd8ae2bb7d, type: 3}
+  m_Name: Pixelation
+  m_EditorClassIdentifier: 
+  active: 0
+  widthPixelation:
+    m_OverrideState: 0
+    m_Value: 512
+  heightPixelation:
+    m_OverrideState: 0
+    m_Value: 528.58
+  colorPrecision:
+    m_OverrideState: 0
+    m_Value: 32
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,6 +80,8 @@ MonoBehaviour:
   - {fileID: -8450813876720922293}
   - {fileID: 7175004792146989396}
   - {fileID: 1290970606704833769}
+  - {fileID: -3090781481742308853}
+  - {fileID: -1014438481679131584}
 --- !u!114 &1290970606704833769
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -64,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   threshold:
     m_OverrideState: 1
     m_Value: 0.4
